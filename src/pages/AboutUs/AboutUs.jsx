@@ -1,18 +1,16 @@
 import { Container } from "react-bootstrap";
-import NotLogged from "../NotLogged/NotLogged";
-
+import imgPicXAbout1 from "../../img/picx-about1.jpeg";
 import "./AboutUs.css";
 
 function AboutUs() {
   return (
     <>
       <div className="intro-1"></div>
-
-      <Container>
+      <Container className="about-us">
         <div className="brand-about-us">
           <h1>Welcome to Foodieasy</h1>
         </div>
-        <div className="about-us">
+        <div className="about-us-text">
           <h3>Who are we?</h3>
           <p>
             Foodieasy is the most trusted cooking brand in the world. The
@@ -25,34 +23,11 @@ function AboutUs() {
             2018, a book ("COOK90: The 30-Day Plan for Faster, Healthier,
             Happier Meals").
           </p>
-
-          <h3>What do we provide?</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            ad blanditiis esse dolorem eum vero quod cupiditate iusto, neque
-            nobis vel libero possimus tempore error dolor sunt autem, eaque
-            voluptatibus.
-          </p>
-          <h3>What do we provide?</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            ad blanditiis esse dolorem eum vero quod cupiditate iusto, neque
-            nobis vel libero possimus tempore error dolor sunt autem, eaque
-            voluptatibus.
-          </p>
-          <h3>What do we provide?</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            ad blanditiis esse dolorem eum vero quod cupiditate iusto, neque
-            nobis vel libero possimus tempore error dolor sunt autem, eaque
-            voluptatibus.
-          </p>
-          <h3>What do we provide?</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            ad blanditiis esse dolorem eum vero quod cupiditate iusto, neque
-            nobis vel libero possimus tempore error dolor sunt autem, eaque
-            voluptatibus.
+          <h3>Our Team</h3>
+          <img className="aboutimg" src={imgPicXAbout1} />
+          <p style={{ display: "flex", justifyContent: "center" }}>
+            It started with three, and now we're with with thousands of new
+            adventurers.
           </p>
         </div>
       </Container>

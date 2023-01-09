@@ -6,25 +6,33 @@
 }
 
 .intro-1 {
-    background-image: url("https://images.ctfassets.net/hbmwn5pbkdff/6TAAx7lD99CnM6FEuE38lJ/e2e92436af2dbb0351e3db032f2f21b1/EPICURIUOS_HERO.jpg?w=1540");
+    background-image: linear-gradient(#ffffff7c, rgba(255, 255, 255, 0)), url("../../img/picx-about2.jpeg");
     max-width: 100%;
     min-height: 60vh;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
     background-attachment:fixed;
     background-size:cover;
 }
 
-.brand-about-us {
+.about-us {
     padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.about-us h3 {
-    color: #DD4A48;
+.about-us-text h3 {
+    color: #4B6587;
 }
 
-.about-us p {
+.about-us-text p {
     padding-bottom: 10px;
+}
+
+.aboutimg {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 800px) {
