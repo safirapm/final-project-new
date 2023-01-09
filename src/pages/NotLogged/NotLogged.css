@@ -1,0 +1,36 @@
+.not-logged {
+    text-align: center;
+    position: relative;
+    margin: 0;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.not-logged-box {
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    margin: 0; 
+    justify-content: center;
+
+}
+
+.not-logged h1 {
+    color: #DD4A48;
+    font-size: 26px;
+}
+
+.not-logged p {
+    font-size: 20px;
+    color:#6f312f;
+}
+
+.href-p {
+    color:#6f312f;
+}
+
+.href-p:hover {
+    color:#DD4A48;
+}

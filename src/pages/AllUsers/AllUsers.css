@@ -1,0 +1,31 @@
+.user-header {
+    background-image: linear-gradient(#b099857a, #f5eedc),url("https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+    max-width: 100%;
+    min-height: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-attachment:fixed; */
+    background-size:cover;
+}
+
+.user-textbox {
+    width: 90%;
+    color:#DD4A48;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+}
+
+.user-cardtitle {
+    font-family: 'Clash Display', sans-serif;
+    color: #F5EEDC;
+}
+
+.user-cardtext {
+    /* text-shadow: #F5EEDC .2px 0 30px; */
+    color:#F5EEDC;
+    background-color: #a24f38;
+}
+

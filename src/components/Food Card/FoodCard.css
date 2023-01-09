@@ -1,0 +1,93 @@
+.food-card {
+    padding-bottom: 20px;
+    display:flex;
+    /* transform: translate(5%, 5%); */
+}
+
+.food-card-1 {
+    padding: 10px 10px;
+    width: 500px;
+    background: #fff;
+}
+
+.food-card-1 img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.food-card-2 {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+
+.card-overlay{
+    width:initial;
+    display:flex;
+    flex-direction: column;
+    justify-content:left;
+}
+
+.card-textbox-1 {
+    display:flex;
+    margin-top: 270px;
+    background:#a543286a;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.card-textbox-2 {
+    background-color:none;
+}
+
+.card-name {
+    position: absolute;
+    color:#F5EEDC;
+    margin-right:45px;
+    margin-top: 270px;
+    display:flex;
+    flex-direction: column !important;
+    text-align: left;
+    transition: 500ms;
+}
+
+.card-name h4 {
+    margin-top:0;
+    margin-bottom:3px;
+    padding-bottom: 0;
+}
+
+.card-symbols {
+    margin-top:0;
+    padding:0
+    
+}
+
+.card-name h4, .card-symbols {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card-name-2 {
+    justify-content: end;
+    display:flex;
+
+
+    color:#F5EEDC;
+    font-weight: 600;
+    font-size: 20px;
+    padding-right: 10px;
+    margin-top: 270px;
+    /* margin-left: 20%; */
+    transition: 300ms ease-in;
+}
+
+.card-name-2:hover {
+    color:#FFF;
+    cursor:pointer;
+    font-size: 24px;
+}

@@ -1,0 +1,40 @@
+.carousel-item img {
+    width: 100% !important;
+    height: 620px !important;
+    object-position: 50% 50%;
+    object-fit: cover;
+}
+
+.intro-1 {
+    background-image: url("https://images.ctfassets.net/hbmwn5pbkdff/6TAAx7lD99CnM6FEuE38lJ/e2e92436af2dbb0351e3db032f2f21b1/EPICURIUOS_HERO.jpg?w=1540");
+    max-width: 100%;
+    min-height: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size:cover;
+}
+
+.brand-about-us {
+    padding-top: 30px;
+}
+
+.about-us h3 {
+    color: #DD4A48;
+}
+
+.about-us p {
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .carousel-item img {
+        height: 500px !important;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .carousel-item img {
+        height: 300px !important;
+    }
+}

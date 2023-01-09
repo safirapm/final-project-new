@@ -1,0 +1,146 @@
+.mt-10 {
+    margin-top: 5px;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.input-container {
+    padding: 48px 24px;
+    width: 400px;
+
+    background-image:linear-gradient(#DD4A48, #DD4A48);
+    border-radius: 8px;
+    text-align: left !important;
+    
+    display: flex;
+    color: #F5EEDC;
+}
+
+.login-container {
+    position: relative;
+    margin: 0;
+    max-width: 100%;
+    min-height: 100vh;
+    background-size:cover;
+    background-position: center;
+
+    background-image:linear-gradient(#f5eedcc2, #cdab8e92), url("../../img/pic1-login.jpeg");
+}
+
+.login-box {
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    margin: 0; 
+    justify-content: center;
+}
+
+.login-box h1 {
+    margin-bottom:0;
+}
+
+.login-box h2 {
+    margin-top:0;
+
+}
+
+.login-box h1, .login-box h2, .login-box p {
+    color:#6f312f;
+    text-shadow: #F5EEDC 1px 0 10px;
+}
+
+.login-box p {
+    font-size: 16px;
+    margin-bottom:0;
+    font-weight: 500;
+}
+
+.login-box a {
+    color:#DD4A48;
+}
+
+
+.login-input{
+    padding: 13px 20px;
+    width: 352px;
+    height: 45px;
+    background: #F5EEDC;
+
+    border: 1.5px solid #F5EEDC;
+    border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #6f312f; 
+}
+
+::placeholder{
+    color: #DD4A48;
+}
+
+.input-label {
+    font-weight: 500;
+}
+
+.no-input {
+    font-size: 14px;
+    margin-top: 2px;
+    margin-bottom:2px;
+}
+
+.signin-btn {
+    padding: 5px 5px;
+    width: 352px;
+    height: 40px;
+    border-radius:8px;
+    font-weight: 600;
+    margin-top: 20px;
+
+    background: #F5EEDC;
+    color: #DD4A48;
+    border: none;
+}
+
+.signin-btn:hover {
+    background: #ECB390;
+    color: #6f312f;
+    border: none;
+}
+
+.btn-light {
+    --bs-btn-active-bg: #6f312f;
+    --bs-btn-active-color: #F5EEDC;
+}
+
+@media screen and (max-width: 476px) {
+    .input-container {
+        padding: 30px 24px;
+        width: 350px;
+    }
+
+    .login-input {
+        padding: 13px 20px;
+        width: 303px;
+        height: 45px;
+    }
+
+    .signin-btn {
+        padding: 5px 5px;
+        width: 303px;
+        height: 40px;
+        border-radius:8px;
+        font-weight: 600;
+        margin-top: 20px;
+    
+        background: #F5EEDC;
+        color: #DD4A48;
+        border: none;
+    }
+    
+}
