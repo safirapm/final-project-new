@@ -1,10 +1,10 @@
 import "./Home.css";
-import { Container, Row, Carousel } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import FoodCard from "../../components/Food Card/FoodCard";
+import MostFav from "../../components/MostFav/MostFav";
 import ImgPic1Section1 from "../../img/pic4-section1.jpeg";
 import ImgPic2Section1 from "../../img/pic5-section1.jpeg";
 import ImgPic3Section1 from "../../img/pic6-section1.webp";
-import ImgPic1Section2 from "../../img/pic7-section2.jpeg";
 function Home() {
   return (
     <>
@@ -77,32 +77,22 @@ function Home() {
           <h3>it's easy, isn't it? (no pun intended)</h3>
         </Container>
 
-        <Container className="section-3">
-          <div className="text-foodcard">
-            <h1>All-Time Favorite Foods</h1>
+        <Container
+          fluid
+          className="section-1 section-3"
+          style={{ marginTop: "0" }}
+        >
+          <div className="text-foodcard" style={{ marginTop: "10px" }}>
+            <h1>Most Favorite Foods</h1>
           </div>
+          <MostFav />
         </Container>
 
-        <Container className="section-4">
-          <div className="text-foodcard">
-            <h1>Highest Rating Dishes</h1>
-          </div>
-        </Container>
-
-        <Container fluid className="section-5">
+        <Container className="section-1">
           <div className="text-foodcard">
             <h1>Explore All Recipes</h1>
-            <p>
-              Click{" "}
-              <span>
-                <i className="bi bi-info-circle-fill"></i>
-              </span>{" "}
-              for more details.
-            </p>
           </div>
-          <Row xs={1} md={3} lg={4} mt={3} mx-lg={4} mx={4} id="food-journal">
-            <FoodCard />
-          </Row>
+          <FoodCard />
         </Container>
       </Container>
     </>

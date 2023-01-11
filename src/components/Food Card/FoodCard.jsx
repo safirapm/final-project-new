@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Container, Col, Card, Button, Modal } from "react-bootstrap";
+import ImgPic1Section1 from "../../img/pic4-section1.jpeg";
 import "./FoodCard.css";
 
 function FoodCard() {
@@ -19,7 +20,7 @@ function FoodCard() {
       })
       .catch((error) => {
         console.log(error);
-        alert("Oops! Please reload the page.");
+        alert("An error has occurred. Please reload the page.");
       });
   };
 
@@ -71,55 +72,42 @@ function FoodCard() {
 
   return (
     <>
-      {allFoods &&
-        allFoods.map((food) => {
-          return (
-            <Col key={food.id} md={4} className="food-card">
-              <Card
-                className="food-card-2 flex-column"
-                style={{ width: "20rem" }}
-              >
-                <Card.Img
-                  variant="top"
-                  src={food.imageUrl}
-                  className="mx-auto"
-                  style={{
-                    height: "340px",
-                    objectFit: "cover",
-                  }}
-                />
-                <Card.ImgOverlay className="card-overlay card-textbox-1 p-2"></Card.ImgOverlay>
-                <Card.ImgOverlay className="card-overlay card-textbox-2 p-2">
-                  <Card.Title className="card-name text-capitalize fs-6 mb-1">
-                    <h4>{food.name}</h4>
-                    <span
-                      className="card-symbols"
-                      style={{ marginLeft: "1px" }}
-                    >
-                      <i className="bi bi-star-fill"></i> {food.rating} |{" "}
+      <Container className="foodcard1-all pd-10">
+        {allFoods &&
+          allFoods.map((food) => {
+            return (
+              <Container key={food.id} className="foodcard1-all">
+                <div className="foodcard1-box d-flex flex-column">
+                  <div className="foodcard1-img">
+                    <img src={food.imageUrl} />
+                  </div>
+                  <div className="foodcard1-box-text">
+                    <a key={food.id} href={`/details/${food.id}`}>
+                      <h4 className="text-capitalize">{food.name}</h4>
+                    </a>
+                    <p>{food.description}</p>
+                    <span className="card-symbols">
+                      <i
+                        className="bi bi-star-fill"
+                        style={{ color: "#FFCC00" }}
+                      ></i>{" "}
+                      {food.rating} |{" "}
                       <i
                         className="bi bi-heart-fill"
                         style={{
-                          color: `${food.isLike ? "#DD4A48" : "#F5EEDC"}`,
+                          color: `${food.isLike ? "#DD4A48" : "#C8C6C6"}`,
                           cursor: "pointer",
                         }}
                         onClick={() => handleLikes(food.id, food.isLike)}
                       ></i>{" "}
                       {food.totalLikes}
-                    </span>{" "}
-                  </Card.Title>
-                  <a
-                    key={food.id}
-                    href={`/details/${food.id}`}
-                    className="card-name-2"
-                  >
-                    <i className="bi bi-info-circle-fill"></i>
-                  </a>
-                </Card.ImgOverlay>
-              </Card>
-            </Col>
-          );
-        })}
+                    </span>
+                  </div>
+                </div>
+              </Container>
+            );
+          })}
+      </Container>
     </>
   );
 }

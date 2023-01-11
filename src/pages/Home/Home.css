@@ -153,6 +153,7 @@
     background-color:#FFF;
     padding-left: 8px;
     padding-right: 8px;
+    text-align: center;
 }
 
 .section-3, .section-4, .section-5 {
@@ -160,4 +161,10 @@
     flex-flow:column;  
     justify-content: center;
     align-items: center;
+}
+
+/* Section 3 */
+.section-3 {
+    background-color: #F7F6F2;
+    padding-bottom: 40px;
 }

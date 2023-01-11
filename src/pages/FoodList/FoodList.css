@@ -1,0 +1,53 @@
+.card-footer {
+    display:flex;
+    flex-flow: column;
+    margin-top: 5px;
+}
+
+/* .foodlist-button{
+    background-color: #444;
+    border-top-color: #444;
+} */
+
+.update-button, .delete-button {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.update-button {
+    background-color: #65bdc6;
+    border-color: none !important;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 0px;
+}
+
+.update-button:hover {
+    background-color: #4b6587;
+}
+
+.update-button:active {
+    --bs-btn-active-bg: #65bdc6;
+}
+
+.delete-button {
+    background-color: #d33532;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 0px;
+}
+
+.delete-button:active {
+    --bs-btn-active-bg: #DD4A48;
+}
+
+.delete-button:hover {
+    background-color: #c11815
+}
+
+.btn-group {
+    border:none !important;
+    font-family: 'General Sans', sans-serif;
+}
+
+.btn-primary {
+    --bs-btn-border-color: none;
+}

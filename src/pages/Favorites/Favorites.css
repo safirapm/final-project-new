@@ -1,0 +1,19 @@
+.favorite-section {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 60px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.favorite-section h2 {
+    margin-bottom: 20px;
+}
+
+.favoritebox-1 img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+

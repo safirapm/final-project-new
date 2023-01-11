@@ -1,36 +1,37 @@
 .detailpage-container {
-    position: relative;
+    display:flex;
+    align-items: center;
     margin: 0;
     max-width: 100%;
     min-height: 100vh;
     background-size:cover;
     background-position: center;
-    background-image:linear-gradient(#f5eedcd4, #cdab8e95),url("../../img/pic2-home.webp")
 }
 
 .main-detail-container {
     display:flex;
-    justify-content: center;
+    flex-flow: column;
+    padding-left: 30px;
+    padding-right: 30px;
+    align-items: center;
 }
 
 .detail-container {
-    top: 30%;
-    position:absolute;
-
     display:flex;
-    color: white;
+    flex-direction: column;
     align-items: center;
-    width: 450px;
-    height: 300px;
-    background: #dd4b48b8;
-    -webkit-backdrop-filter: blur(5px);  
+
+    color: #444;
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.498);
     backdrop-filter: blur(5px);
+    padding: 10px 10px;
+
     box-shadow: 1.3rem 1rem 1rem rgb(62, 62, 62, 0.3);
     border-top-color: rgba(225, 225, 225, 0.718);
     border-left-color: rgba(225, 225, 225, 0.75);
     border-bottom-color: rgba(225, 225, 225, 0.1);
     border-right-color: rgba(225, 225, 225, 0.1);
-    border-radius: 8px;
 }
 
 .detail-info {
@@ -51,22 +52,17 @@
 .detail-container img {
     display:flex;
     float:right;
-    max-width: 200px;
+    max-width: 100%;
     height: 300px;
     object-position:center;
     object-fit: cover;
-    border-radius:8px;  
 }
 
 .detail-footer {
-    top: 64%;
-    position:absolute;
-
-    display:flex;
-    align-items: center;
     width: 450px;
     height: 50px;
     background: #f5eedc;
+    max-width: 100%;
     -webkit-backdrop-filter: blur(5px);  
     backdrop-filter: blur(5px);
     box-shadow: 1.3rem 1rem 1rem rgb(62, 62, 62, 0.3);
@@ -74,8 +70,6 @@
     border-left-color: rgba(225, 225, 225, 0.75);
     border-bottom-color: rgba(225, 225, 225, 0.1);
     border-right-color: rgba(225, 225, 225, 0.1);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
 }
 
 .detail-icons {

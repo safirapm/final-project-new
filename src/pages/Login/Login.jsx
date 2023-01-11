@@ -58,29 +58,28 @@ function Login() {
     <>
       <Container className="login-container">
         <div className="login-box">
-          <h1 style={{ textShadow: "#F5EEDC 1px 0 10px" }}>
-            Welcome to{" "}
-            <span
-              style={{
-                fontWeight: "bold",
-                fontFamily: "'Clash Display', sans-serif",
-                color: "#DD4A48",
-                textShadow: "#F5EEDC 1px 0 10px",
-              }}
-            >
-              Foodieasy
-            </span>
-          </h1>
-          <p>
-            Are you new? Come{" "}
-            <span>
-              <a href="/register">join us</a>
-            </span>{" "}
-            now!
-          </p>
-          <h2>Sign in here</h2>
-          <br />
           <Container className="input-container">
+            <h2 style={{ textShadow: "#F5EEDC 1px 0 10px" }}>
+              Welcome to{" "}
+              <span
+                style={{
+                  fontWeight: "bold",
+                  fontFamily: "'Poppins', sans-serif",
+                  color: "#4B6587",
+                  textShadow: "#F5EEDC 1px 0 10px",
+                }}
+              >
+                Foodieasy
+              </span>
+            </h2>
+            <p>
+              Are you new? Come{" "}
+              <span>
+                <a href="/register">join us</a>
+              </span>{" "}
+              now!
+            </p>
+            <h2>Sign in here</h2>
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-8 input-label mobile-login" htmlFor="email">
                 Email

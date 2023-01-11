@@ -1,7 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Component */
 import NavHome from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Register from "./pages/Register/Register";
+
+/* Pages */
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Favorites from "./pages/Favorites/Favorites";
@@ -10,9 +14,10 @@ import AddFood from "./pages/AddFood/AddFood";
 import AllUser from "./pages/AllUsers/AllUsers";
 import NotLogged from "./pages/NotLogged/NotLogged";
 import Details from "./pages/Details/Details";
-import FoodRate from "./pages/FoodRate/FoodRate";
 import FoodList from "./pages/FoodList/FoodList";
 import Profile from "./pages/Profile/Profile";
+
+/* Library */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -55,10 +60,6 @@ const router = createBrowserRouter([
       {
         path: "/details/:foodID",
         element: localStorage.getItem("token") ? <Details /> : <NotLogged />,
-      },
-      {
-        path: "/food-rate/:foodID",
-        element: localStorage.getItem("token") ? <FoodRate /> : <NotLogged />,
       },
       {
         path: "/food-list",

@@ -1,93 +1,90 @@
-.food-card {
-    padding-bottom: 20px;
-    display:flex;
-    /* transform: translate(5%, 5%); */
+.pd-10 {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.food-card-1 {
-    padding: 10px 10px;
-    width: 500px;
-    background: #fff;
+.foodcard1-all {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-gap: 20px; 
+    padding-bottom: 15px; 
 }
 
-.food-card-1 img {
-    width: 250px;
-    height: 200px;
+.foodcard1-box {
+    position: relative;
+    border-radius: 4px;
+    border-top: solid 1px #4B6587;
+    border-left: solid 1px #4B6587;
+    border-bottom: solid 1px #4B6587;
+    border-right: solid 1px #4B6587;
+    transition: transform .5s ease;
+}
+
+.foodcard1-box:hover {
+    transform:scale(1.03);
+    box-shadow: 0 3px 20px #aba9a9;
+}
+
+.foodcard1-img {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.foodcard1-img img {
+    width: 100%;
+    height: 305px;
     object-fit: cover;
 }
 
-.food-card-2 {
-    margin: 0 auto;
-    float: none;
-    margin-bottom: 5px;
+a {
+    text-decoration: none;
+}
+
+
+.foodcard1-box-text {
     display: flex;
-}
-
-
-.card-overlay{
-    width:initial;
-    display:flex;
     flex-direction: column;
-    justify-content:left;
+    flex: 1 1 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+
 }
 
-.card-textbox-1 {
-    display:flex;
-    margin-top: 270px;
-    background:#a543286a;
-    flex-direction: column;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+.foodcard1-box-text h4 {
+    font-family: 'General Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    color: #4B6587;
 }
 
-.card-textbox-2 {
-    background-color:none;
+.foodcard1-box-text h4:hover {
+    cursor:pointer;
+    color: #65bdc6;
+    text-decoration: underline;
 }
 
-.card-name {
-    position: absolute;
-    color:#F5EEDC;
-    margin-right:45px;
-    margin-top: 270px;
-    display:flex;
-    flex-direction: column !important;
-    text-align: left;
-    transition: 500ms;
-}
+.foodcard1-box-text p {
+    margin-bottom: 0px;
+    font-weight: 500;
+    font-size: 15px;
+    position:relative;
+    color: #4B6587;
+    line-height:18px;
+    margin-bottom: 2px;
 
-.card-name h4 {
-    margin-top:0;
-    margin-bottom:3px;
-    padding-bottom: 0;
 }
 
 .card-symbols {
-    margin-top:0;
-    padding:0
-    
-}
-
-.card-name h4, .card-symbols {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.card-name-2 {
-    justify-content: end;
-    display:flex;
-
-
-    color:#F5EEDC;
-    font-weight: 600;
-    font-size: 20px;
-    padding-right: 10px;
-    margin-top: 270px;
-    /* margin-left: 20%; */
-    transition: 300ms ease-in;
-}
-
-.card-name-2:hover {
-    color:#FFF;
-    cursor:pointer;
-    font-size: 24px;
+    font-family: 'General Sans', sans-serif;
+    font-size: 14px;
+    margin-top: 2px;
 }

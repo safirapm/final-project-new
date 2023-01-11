@@ -17,7 +17,7 @@ function Register() {
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(8, "Must be 8 characters or more")
+        .min(5, "Must be 5 characters or more")
         .max(15, "Must be less than 15 characters")
         .required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
@@ -39,10 +39,15 @@ function Register() {
         .matches(/^[0-9]{10,12}$/, "Must be in digit")
         .required("Required"),
     }),
-    onSumbit: (values) => {
-      console.log(values);
-      axios
-        .post(`${process.env.REACT_APP_BASEURL}api/v1/register`, {
+    onSubmit: (values) => {
+      axios({
+        method: "post",
+        url: `${process.env.REACT_APP_BASEURL}api/v1/register`,
+        values,
+        headers: {
+          apiKey: process.env.REACT_APP_APIKEY,
+        },
+        data: {
           name: values.name,
           email: values.email,
           password: values.password,
@@ -50,13 +55,12 @@ function Register() {
           role: values.role,
           profilePictureUrl: values.profilePictureUrl,
           phoneNumber: values.phoneNumber,
-          apiKey: process.env.REACT_APP_APIKEY,
-        })
+        },
+      })
         .then((res) => {
           console.log(res);
-          formik.resetForm({ values: "" });
-          alert("Your account is registered. Log in to access your website!");
-          window.location.href = "/";
+          alert("Your account is registered. Log in to access Foodieasy.");
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
@@ -73,14 +77,13 @@ function Register() {
         </div>
         <Container className="input-container">
           <form onSubmit={formik.handleSubmit}>
-            <div className="mb-8 input-label mobile-login" htmlFor="name">
-              Name
-            </div>
+            <div className="mb-8 input-label mobile-login">Name</div>
             <input
               className="register-input"
               id="name"
               name="name"
               type="text"
+              placeholder="Enter Name"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
@@ -88,9 +91,8 @@ function Register() {
             {formik.touched.name && formik.errors.name ? (
               <div className="no-input">{formik.errors.name}</div>
             ) : null}
-            <div className="mt-10 mb-8 input-label" htmlFor="email">
-              Email
-            </div>
+
+            <div className="mt-10 mb-8 input-label">Email</div>
             <input
               className="register-input"
               id="email"
@@ -103,27 +105,30 @@ function Register() {
             {formik.touched.email && formik.errors.email ? (
               <div className="no-input">{formik.errors.email}</div>
             ) : null}
-            <div className="mt-10 mb-8 input-label" htmlFor="password">
-              Password
-            </div>
+
+            <div className="mt-10 mb-8 input-label">Password</div>
             <input
               className="register-input"
               id="password"
               name="password"
               type="password"
+              placeholder="Enter your password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
             />
+
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-            <div htmlFor="passwordRepeat">Confirm Password</div>
+
+            <div>Confirm Password</div>
             <input
               className="register-input"
               id="passwordRepeat"
               name="passwordRepeat"
               type="password"
+              placeholder="Confirm password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.passwordRepeat}
@@ -131,12 +136,13 @@ function Register() {
             {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
               <div>{formik.errors.passwordRepeat}</div>
             ) : null}
-            <div htmlFor="role">Role</div>
+            <div>Role</div>
             <select
               className="register-input"
               id="role"
               name="role"
-              type="text"
+              component="select"
+              multiple={false}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.role}
@@ -145,10 +151,8 @@ function Register() {
               <option value="admin">Admin</option>
               <option value="user">User</option>
             </select>
-            {formik.touched.role && formik.errors.role ? (
-              <div>{formik.errors.role}</div>
-            ) : null}
-            <div htmlFor="profilePictureUrl">Profile Picture URL</div>
+
+            <div>Profile Picture URL</div>
             <input
               className="register-input"
               id="profilePictureUrl"
@@ -162,12 +166,12 @@ function Register() {
             formik.errors.profilePictureUrl ? (
               <div>{formik.errors.profilePictureUrl}</div>
             ) : null}
-            <div htmlFor="phoneNumber">Phone Number</div>
+            <div>Phone Number</div>
             <input
               className="register-input"
               id="phoneNumber"
               name="phoneNumber"
-              type="number"
+              type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.phoneNumber}
@@ -175,9 +179,8 @@ function Register() {
             {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
               <div>{formik.errors.phoneNumber}</div>
             ) : null}
-            <button className="register-btn" type="submit">
-              Submit
-            </button>
+
+            <input className="register-btn" type="submit" value="Register" />
           </form>
         </Container>
       </Container>
