@@ -78,7 +78,7 @@ function FoodCard() {
               <Container key={food.id} className="foodcard1-all">
                 <div className="foodcard1-box d-flex flex-column">
                   <div className="foodcard1-img">
-                    <img src={food.imageUrl} />
+                    <img src={food.imageUrl} alt={food.name} />
                   </div>
                   <div className="foodcard1-box-text">
                     <a key={food.id} href={`/details/${food.id}`}>

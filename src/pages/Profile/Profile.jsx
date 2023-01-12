@@ -141,7 +141,10 @@ function Profile() {
               <div className="modal-body form-modal">
                 <form onSubmit={(e) => handleSubmit(e, profile.id)}>
                   <div className="form-img">
-                    <img src={profile && profile.profilePictureUrl} />
+                    <img
+                      src={profile && profile.profilePictureUrl}
+                      alt={profile && profile.name}
+                    />
                   </div>
                   <div htmlFor="inputName" className="form-label">
                     Name
