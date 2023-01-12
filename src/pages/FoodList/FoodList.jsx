@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Form, Formik, useField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Container, Col, Card, Button, Modal } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
+import AttachImage from "../../components/Attach Image/AttachImage";
 import "./FoodList.css";
 
 function FoodList() {
+  const [savePicture, setSavePicture] = useState("");
   const [allFoods, setAllFoods] = useState([]);
 
   const getFood = () => {
@@ -40,12 +42,14 @@ function FoodList() {
       data: {
         name: values.name,
         description: values.description,
-        imageUrl: values.imageUrl,
+        imageUrl: savePicture,
         ingredients: values.ingredients,
       },
     })
       .then((response) => {
         console.log(response);
+        alert("Your changes have been updated.");
+        window.location.reload();
         getFood();
       })
       .catch((error) => {
@@ -69,6 +73,7 @@ function FoodList() {
       })
         .then((response) => {
           console.log(response);
+          alert("Your food has been deleted.");
           getFood();
         })
         .catch((error) => {
@@ -84,7 +89,7 @@ function FoodList() {
         <label htmlFor={props.id || props.name}>{label}</label>
         <input className="text-input form-control" {...field} {...props} />
         {meta.touched && meta.error ? (
-          <div className="error">{meta.error}</div>
+          <div className="text-error">{meta.error}</div>
         ) : null}
       </div>
     );
@@ -101,7 +106,7 @@ function FoodList() {
                 <Container className="foodcard1-all" key={food.id}>
                   <div className="foodcard1-box">
                     <div className="foodcard1-img">
-                      <img src={food.imageUrl} />
+                      <img src={food.imageUrl} alt={food.name} />
                     </div>
                     <div className="foodcard1-box-text">
                       <a key={food.id} href={`/details/${food.id}`}>
@@ -128,17 +133,17 @@ function FoodList() {
                     <div className="card-footer foodlist-button">
                       <div className="btn-group" role="group">
                         <Button
+                          className="delete-button"
+                          onClick={() => handleDelete(food.id)}
+                        >
+                          Delete
+                        </Button>
+                        <Button
                           className="update-button"
                           data-bs-toggle="modal"
                           data-bs-target={`#staticBackdrop_${food.id}`}
                         >
                           Update
-                        </Button>
-                        <Button
-                          className="delete-button"
-                          onClick={() => handleDelete(food.id)}
-                        >
-                          Delete
                         </Button>
                       </div>
                     </div>
@@ -158,109 +163,123 @@ function FoodList() {
                             initialValues={{
                               name: food.name,
                               description: food.description,
-                              imageUrl: food.imageUrl,
+                              imageUrl: savePicture,
                               ingredients: food.ingredients,
                               id: food.id,
                             }}
                             validationSchema={Yup.object({
                               name: Yup.string().required("Required"),
                               description: Yup.string().required("Required"),
-                              imageUrl: Yup.string().required("Required"),
                             })}
                             onSubmit={onSubmit}
                           >
-                            <div className="container-md my-3">
-                              <div className="text-center">
-                                <h2>Update Food</h2>
-                                <img
-                                  src={food.imageUrl}
-                                  alt={food.name}
-                                  className="food-card-image"
-                                />
+                            <Container className="alluser-modal">
+                              <div
+                                className="text-center"
+                                style={{
+                                  fontFamily: "'General Sans', sans-serif",
+                                  paddingBottom: "5px",
+                                }}
+                              >
+                                <h3>Update Food</h3>
                               </div>
-                              <div className="row justify-content-center">
-                                <div className="col-md-12">
-                                  <Form>
-                                    <MyTextInput
-                                      label="Food Name"
-                                      name="name"
-                                      type="text"
-                                      placeholder="Food name"
-                                    />
 
-                                    <MyTextInput
-                                      label="Food Description"
-                                      name="description"
-                                      type="text"
-                                      placeholder="Food Description"
-                                    />
+                              <div className="alluser-box">
+                                <img src={food.imageUrl} alt={food.name} />
+                                <div className="row justify-content-center">
+                                  <div className="col-md-12">
+                                    <Form>
+                                      <MyTextInput
+                                        label="Food Name"
+                                        name="name"
+                                        type="text"
+                                        placeholder="Food name"
+                                      />
 
-                                    <MyTextInput
-                                      label="Food Image URL"
-                                      name="imageUrl"
-                                      type="url"
-                                      placeholder="Food Image URL"
-                                    />
-                                    <div className="mb-3">
-                                      <label>Food Ingredients</label>
-                                      <FieldArray name="ingredients">
-                                        {(fieldArrayProps) => {
-                                          const { push, remove, form } =
-                                            fieldArrayProps;
-                                          const { values } = form;
-                                          const { ingredients } = values;
-                                          return (
-                                            <div>
-                                              {ingredients.map(
-                                                (ingredient, index) => (
-                                                  <div
-                                                    key={index}
-                                                    className="d-flex input-group mb-1"
-                                                  >
-                                                    <Field
-                                                      name={`ingredients[${index}]`}
-                                                      placeholder="Food Ingredients"
-                                                      className="form-control"
-                                                    />
-                                                    {index > 0 && (
+                                      <MyTextInput
+                                        label="Food Description"
+                                        name="description"
+                                        type="text"
+                                        placeholder="Food Description"
+                                      />
+
+                                      <div className="form-label">
+                                        Upload Picture (JPG/PNG/JPEG)
+                                      </div>
+                                      <AttachImage
+                                        name="imageUrl"
+                                        onChange={(value) =>
+                                          setSavePicture(value)
+                                        }
+                                      />
+                                      <div className="mb-3">
+                                        <label>Food Ingredients</label>
+                                        <FieldArray name="ingredients">
+                                          {(fieldArrayProps) => {
+                                            const { push, remove, form } =
+                                              fieldArrayProps;
+                                            const { values } = form;
+                                            const { ingredients } = values;
+                                            return (
+                                              <div>
+                                                {ingredients.map(
+                                                  (ingredient, index) => (
+                                                    <div
+                                                      key={index}
+                                                      className="d-flex input-group mb-1"
+                                                    >
+                                                      <Field
+                                                        name={`ingredients[${index}]`}
+                                                        placeholder="Food Ingredients"
+                                                        className="form-control"
+                                                      />
+                                                      {index > 0 && (
+                                                        <button
+                                                          className="btn minus-button"
+                                                          type="button"
+                                                          onClick={() =>
+                                                            remove(index)
+                                                          }
+                                                        >
+                                                          -
+                                                        </button>
+                                                      )}
                                                       <button
                                                         type="button"
-                                                        className="btn  btn-outline-warning "
-                                                        onClick={() =>
-                                                          remove(index)
-                                                        }
+                                                        className="btn plus-button"
+                                                        onClick={() => push("")}
                                                       >
-                                                        -
+                                                        +
                                                       </button>
-                                                    )}
-                                                    <button
-                                                      type="button"
-                                                      className="btn btn-outline-warning "
-                                                      onClick={() => push("")}
-                                                    >
-                                                      +
-                                                    </button>
-                                                  </div>
-                                                )
-                                              )}
-                                            </div>
-                                          );
-                                        }}
-                                      </FieldArray>
-                                    </div>
+                                                    </div>
+                                                  )
+                                                )}
+                                              </div>
+                                            );
+                                          }}
+                                        </FieldArray>
+                                      </div>
 
-                                    <div className="text-center">
-                                      <button
-                                        type="submit"
-                                        className="btn bgcolor1 text-light btn-warning shadow"
-                                      >
-                                        Save
-                                      </button>
-                                    </div>
-                                  </Form>
+                                      <div className="text-center">
+                                        <Button
+                                          className="save-button"
+                                          type="submit"
+                                        >
+                                          Save Changes
+                                        </Button>
+                                        <Button
+                                          className="cancel-button"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                        >
+                                          Cancel
+                                        </Button>
+                                      </div>
+                                    </Form>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </Container>
                           </Formik>
                         </div>
                       </div>
