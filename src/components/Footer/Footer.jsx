@@ -10,7 +10,7 @@ function Footer() {
             <Row className="footer-row">
               <div className="footer-col">
                 <h4>Foodieasy</h4>
-                <ul className="footer-ul">
+                <ul className="footer-ul text-light">
                   <li>
                     <a href="/about">About Us</a>
                   </li>
@@ -22,7 +22,7 @@ function Footer() {
 
               <div className="footer-col">
                 <h4>Get Help</h4>
-                <ul className="footer-ul">
+                <ul className="footer-ul text-light">
                   <li>FAQ</li>
                   <li>Subscriptions</li>
                   <li>How Foodieasy Works</li>
@@ -31,7 +31,7 @@ function Footer() {
               </div>
               <div className="footer-col">
                 <h4>Recipes</h4>
-                <ul className="footer-ul">
+                <ul className="footer-ul text-light">
                   <li>Main Course</li>
                   <li>Snacks</li>
                   <li>Dessert</li>
@@ -41,7 +41,7 @@ function Footer() {
               <div className="footer-col">
                 <h4>Follow Us</h4>
                 <div className="social-media">
-                  <ul className="footer-ul">
+                  <ul className="footer-ul text-light">
                     <li>
                       <i className="bi bi-facebook"></i>
                     </li>
