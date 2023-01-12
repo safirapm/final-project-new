@@ -1,4 +1,4 @@
-import { Container, Modal, Button } from "react-bootstrap";
+import { Container, ListGroup, Badge, Button } from "react-bootstrap";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -7,11 +7,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 function Details() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [allDetail, setAllDetail] = useState("");
 
   const [rating, setRating] = useState();
@@ -84,7 +79,7 @@ function Details() {
       review: "",
     },
     validationSchema: Yup.object({
-      rating: Yup.string().required("Required"),
+      rating: Yup.number().min(0).max(5).required("Required"),
       review: Yup.string().required("Required"),
     }),
   });
@@ -92,82 +87,104 @@ function Details() {
   return (
     <>
       <Container className="detailpage-container">
-        <Container className="main-detail-container">
-          <div className="detail-container">
+        <h2 className="text-capitalize">{allDetail && allDetail.name}</h2>
+        <Container className="detail-container">
+          <div className="detail-box">
             <div className="detail-info">
-              <img src={allDetail && allDetail.imageUrl} />
-              <h3 className="text-capitalize">{allDetail && allDetail.name}</h3>
-              <p>
-                <i className="bi bi-pen"></i>{" "}
-                {allDetail && allDetail.description}
-              </p>
-              <p>
-                <i className="bi bi-cart3"></i>{" "}
-                {allDetail &&
-                  allDetail.ingredients.map((m, index) => {
-                    return <span key={index}>{(index ? ", " : "") + m}</span>;
-                  })}
-              </p>
+              <div className="detail-img">
+                <img src={allDetail && allDetail.imageUrl} />
+              </div>
+              <div className="detail-text">
+                <h3 className="text-capitalize">
+                  {allDetail && allDetail.name}
+                </h3>
+                <p>
+                  <i
+                    className="bi bi-blockquote-left"
+                    style={{ color: "#4B6587" }}
+                  ></i>{" "}
+                  {allDetail && allDetail.description}
+                </p>
+                <p>
+                  <i
+                    className="bi bi-card-checklist"
+                    style={{ color: "#4B6587" }}
+                  ></i>{" "}
+                  {allDetail &&
+                    allDetail.ingredients.map((m, index) => {
+                      return <span key={index}>{(index ? ", " : "") + m}</span>;
+                    })}
+                </p>
+              </div>
             </div>
-            <div className="detail-footer">
-              <div className="detail-icons">
-                <i className="bi bi-star-fill"></i>{" "}
-                {allDetail && allDetail.rating} |{" "}
-                <i
-                  className="bi bi-heart-fill"
-                  style={{ color: "#DD4A48" }}
-                ></i>{" "}
-                {allDetail && allDetail.totalLikes}
+            <div className="card-footer detail-footer">
+              <div className="detail-footer-2">
+                <div className="detail-icons">
+                  <i
+                    className="bi bi-star-fill"
+                    style={{ color: "#FFCC00" }}
+                  ></i>{" "}
+                  {allDetail && allDetail.rating} |{" "}
+                  <i
+                    className="bi bi-heart-fill"
+                    style={{ color: "#DD4A48" }}
+                  ></i>{" "}
+                  {allDetail && allDetail.totalLikes}
+                </div>
+                <div className="text-end details-rate">
+                  <Button
+                    type="button"
+                    className="rate-button"
+                    data-bs-toggle="modal"
+                    data-bs-target={`#rating${allDetail && allDetail.id}`}
+                  >
+                    Rate Food
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-          <br />
-          <button
-            type="button"
-            className="btn text-light btn-success shadow d-flex align-items-center py-1"
-            data-bs-toggle="modal"
-            data-bs-target={`#rating${allDetail && allDetail.id}`}
-          >
-            Rate Food
-          </button>
 
           <div className="text-start">
             <h3 className="fs-4">Reviews</h3>
           </div>
-          {rating &&
-            rating.map((rate) => {
-              return (
-                <div key={rate.id}>
-                  <ul className="list-group mt-3">
-                    <li className="list-group-item shadow">
-                      <div className="d-flex justify-content-start gap-2">
-                        <div className="d-flex">
-                          <img
-                            src={rate.user.profilePictureUrl}
-                            className="img-fluid img-profile"
-                            alt={rate.user.name}
-                          />
-                        </div>
-                        <div className="d-flex">
-                          <div>
-                            <p className="fw-bold review-name mb-1">
-                              {rate.user.name}
-                            </p>
-                            <p className="d-flex align-items-center review-name">
-                              <i className="ri-star-fill me-1"></i>
-                              {rate.rating}
-                            </p>
-                          </div>
-                        </div>
+          <Container className="listgroup-container">
+            {rating &&
+              rating.map((rate) => {
+                return (
+                  <ListGroup as="ol" key={rate.id} className="listgroup-items">
+                    <ListGroup.Item
+                      as="li"
+                      className="d-flex justify-content-between align-items-start"
+                    >
+                      <div className="listgroup-img">
+                        <img src={rate.user.profilePictureUrl} />
                       </div>
-                      <div className="d-flex justify-content-start review-comment">
-                        <p>{rate.review}</p>
+                      <div className="ms-2 me-auto">
+                        <div
+                          className="fw-bold"
+                          style={{ fontFamily: "'General Sans', sans-serif" }}
+                        >
+                          {rate.user.name}
+                        </div>
+                        <div className="listgroup-review">{rate.review}</div>
                       </div>
-                    </li>
-                  </ul>
-                </div>
-              );
-            })}
+                      <Badge
+                        bg="none"
+                        pill
+                        style={{ color: "#444", fontSize: "14px" }}
+                      >
+                        <i
+                          className="bi bi-star-fill"
+                          style={{ color: "#FFCC00" }}
+                        ></i>{" "}
+                        {rate.rating}
+                      </Badge>
+                    </ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
+          </Container>
 
           <div
             className="modal fade"
@@ -179,62 +196,57 @@ function Details() {
             <div className="modal-dialog">
               <div className="modal-content p-3">
                 <div className="modal-body">
-                  <div className="text-center">
-                    <h2 className="fs-3">Rate This Food</h2>
-                    <img
-                      src={allDetail && allDetail.imageUrl}
-                      className="img-fluid img-food-rate my-3"
-                      alt={allDetail && allDetail.name}
-                    />
-                  </div>
-                  <form onSubmit={(e) => handleSubmit(e, allDetail.id)}>
-                    <div className="row mb-3">
-                      <div className="col-lg-12">
-                        <label
-                          htmlFor="inputName"
-                          className="form-label fw-bold mb-1"
-                        >
-                          Rating
-                        </label>
-                        <input
-                          value={formik.values.rating}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          type="number"
-                          className="form-control"
-                          id="rating"
-                          placeholder="Rate this food (1-5)"
-                        />
-                      </div>
+                  <Container>
+                    <div className="text-center">
+                      <h2 className="fs-3">Rate This Food</h2>
+                      <img
+                        src={allDetail && allDetail.imageUrl}
+                        className="img-fluid"
+                        alt={allDetail && allDetail.name}
+                        style={{ marginBottom: "10px", borderRadius: "8px" }}
+                      />
                     </div>
-                    <div className="row mb-3">
-                      <div className="col-lg-12">
-                        <label
-                          htmlFor="inputName"
-                          className="form-label fw-bold mb-1"
-                        >
-                          Review
-                        </label>
-                        <textarea
-                          value={formik.values.review}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          type="text"
-                          className="form-control"
-                          id="review"
-                          placeholder="Review this food"
-                        />
-                      </div>
-                    </div>
-                    <div className="text-start mt-3">
-                      <button
-                        type="submit"
-                        className="btn text-light shadow btn-success"
+                    <form onSubmit={(e) => handleSubmit(e, allDetail.id)}>
+                      <label
+                        htmlFor="inputName"
+                        className="form-label fw-bold mb-1"
                       >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
+                        Rating
+                      </label>
+                      <input
+                        value={formik.values.rating}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        type="number"
+                        className="form-control mb-2"
+                        id="rating"
+                        placeholder="Rate this food (1-5)"
+                      />
+                      <label
+                        htmlFor="inputName"
+                        className="form-label fw-bold mb-1"
+                      >
+                        Review
+                      </label>
+                      <textarea
+                        value={formik.values.review}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        type="text"
+                        className="form-control"
+                        id="review"
+                        placeholder="Review this food"
+                      />
+                      <div
+                        className="text-center mt-3"
+                        style={{ width: "100%" }}
+                      >
+                        <Button type="submit" className="addfood-button">
+                          Submit
+                        </Button>
+                      </div>
+                    </form>
+                  </Container>
                 </div>
               </div>
             </div>
