@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Form, Formik, useFormik, useField } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import AttachImage from "../../components/Attach Image/AttachImage";
 import { Container, Button } from "react-bootstrap";
 import "./Profile.css";
 
 function Profile() {
   const [profile, setProfile] = useState();
+  const [savePicture, setSavePicture] = useState("");
+
   const getProfile = () => {
     axios({
       method: "get",
@@ -17,6 +20,7 @@ function Profile() {
       },
     })
       .then((res) => {
+        console.log(res.data);
         setProfile(res.data.user);
       })
       .catch((error) => {
@@ -29,75 +33,52 @@ function Profile() {
     getProfile();
   }, []);
 
-  const onSubmit = (values) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const values = formik.values;
     axios({
       method: "post",
       url: `${process.env.REACT_APP_BASEURL}api/v1/update-profile`,
+      headers: {
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       data: {
         name: values.name,
         email: values.email,
-        profilePictureUrl: values.profilePictureUrl,
+        profilePictureUrl: savePicture,
         phoneNumber: values.phoneNumber,
-      },
-      headers: {
-        apiKey: process.env.REACT_APP_APIKEY,
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        role: values.role,
       },
     })
       .then((response) => {
         console.log(response);
-        axios({
-          method: "post",
-          url: `${process.env.REACT_APP_BASEURL}api/v1/update-user-role/${
-            profile && profile.id
-          }`,
-          data: {
-            role: values.role,
-          },
-          headers: {
-            apiKey: process.env.REACT_APP_APIKEY,
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-          .then((response) => {
-            console.log(response);
-            localStorage.setItem("role", values.role);
-            window.location.reload();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        window.location.reload();
+        getProfile();
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const MyTextInput = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <div className="mb-3">
-        <label htmlFor={props.id || props.name}>{label}</label>
-        <input className="text-input form-control" {...field} {...props} />
-        {meta.touched && meta.error ? (
-          <div className="error">{meta.error}</div>
-        ) : null}
-      </div>
-    );
-  };
-
-  const MySelect = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <div className="mb-3">
-        <label htmlFor={props.id || props.name}>{label}</label>
-        <select className="form-select" {...field} {...props} />
-        {meta.touched && meta.error ? (
-          <div className="error">{meta.error}</div>
-        ) : null}
-      </div>
-    );
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: (profile && profile.name) || "",
+      email: (profile && profile.email) || "",
+      phoneNumber: (profile && profile.phoneNumber) || "",
+      role: (profile && profile.role) || "",
+      profilePictureUrl: (profile && profile.profilePictureUrl) || "",
+    },
+    enableReinitialize: true,
+    validationSchema: Yup.object({
+      name: Yup.string().required("Required"),
+      email: Yup.string().required("Required"),
+      phoneNumber: Yup.string()
+        .min(10, "Must be 10 characters or more")
+        .max(12, "Must be 12 characters or less")
+        .matches(/^[0-9]{10,12}$/, "Must be in digit"),
+    }),
+  });
 
   return (
     <>
@@ -106,20 +87,23 @@ function Profile() {
         <Container className="profile-box">
           <div className="profile-data">
             <div className="profile-img">
-              <img src={profile && profile.profilePictureUrl} />
+              <img
+                src={profile && profile.profilePictureUrl}
+                alt={profile && profile.name}
+              />
             </div>
             <div className="profile-text">
               <h3>{profile && profile.name}</h3>
               <p>
-                <i class="bi bi-envelope-at-fill"></i>{" "}
+                <i className="bi bi-envelope-at-fill"></i>{" "}
                 {profile && profile.email}
               </p>
               <p>
-                <i class="bi bi-phone-vibrate-fill"></i>{" "}
+                <i className="bi bi-phone-vibrate-fill"></i>{" "}
                 {profile && profile.phoneNumber}
               </p>
-              <p>
-                <i class="bi bi-file-person-fill text-capitalize"></i>{" "}
+              <p className="text-capitalize">
+                <i className="bi bi-file-person-fill"></i>{" "}
                 {profile && profile.role}
               </p>
             </div>
@@ -135,98 +119,101 @@ function Profile() {
             </div>
           </div>
         </Container>
+      </Container>
 
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          aria-labelledby="modal-title"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-md">
-            <div className="modal-content">
-              <div className="modal-body">
-                <Formik
-                  initialValues={{
-                    name: profile && profile.name,
-                    email: profile && profile.email,
-                    profilePictureUrl: profile && profile.profilePictureUrl,
-                    phoneNumber: profile && profile.phoneNumber,
-                    role: profile && profile.role,
-                  }}
-                  enableReinitialize={true}
-                  validationSchema={Yup.object({
-                    name: Yup.string()
-                      .min(5, "Must be 5 characters or more")
-                      .max(20, "Must be 20 characters or less"),
-                    email: Yup.string().email("Invalid email address"),
-                    profilePictureUrl: Yup.string(),
-                    phoneNumber: Yup.string()
-                      .min(10, "Must be 10 characters or more")
-                      .max(12, "Must be 12 characters or less")
-                      .matches(/^[0-9]{10,12}$/, "Must be in digit"),
-                    role: Yup.string().oneOf(
-                      ["admin", "general"],
-                      "Invalid Job Type"
-                    ),
-                  })}
-                  onSubmit={onSubmit}
-                >
-                  <div className="container-md my-3">
-                    <div className="text-center">
-                      <h2>My Profile</h2>
-                    </div>
-                    <div className="row justify-content-center my-3">
-                      <div className="col-md-12">
-                        <img
-                          src={profile && profile.profilePictureUrl}
-                          className="img-fluid user-card-image mx-auto d-block"
-                          alt={profile && profile.name}
-                        />
-                        <Form>
-                          <MyTextInput label="Name" name="name" type="text" />
+      <div
+        className="modal fade"
+        id="exampleModal"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        style={{ display: "flex !important" }}
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <Container className="profile-modal">
+              <h3
+                className="text-center"
+                style={{ fontFamily: "'General Sans', sans-serif" }}
+              >
+                Edit Profile
+              </h3>
 
-                          <MyTextInput
-                            label="Email Address"
-                            name="email"
-                            type="email"
-                          />
-
-                          <MyTextInput
-                            label="Profile Picture URL"
-                            name="profilePictureUrl"
-                            type="url"
-                          />
-
-                          <MyTextInput
-                            label="Phone Number"
-                            name="phoneNumber"
-                            type="tel"
-                          />
-
-                          {localStorage.getItem("role") === "admin" ? (
-                            <MySelect label="Role" name="role">
-                              <option value="">Select a Role</option>
-                              <option value="admin">Admin</option>
-                              <option value="general">General</option>
-                            </MySelect>
-                          ) : null}
-
-                          <div className="text-center">
-                            <button type="submit" className="btn btn-dark">
-                              Save
-                            </button>
-                          </div>
-                        </Form>
-                      </div>
-                    </div>
+              <div className="modal-body form-modal">
+                <form onSubmit={(e) => handleSubmit(e, profile.id)}>
+                  <div className="form-img">
+                    <img src={profile && profile.profilePictureUrl} />
                   </div>
-                </Formik>
+                  <div htmlFor="inputName" className="form-label">
+                    Name
+                  </div>
+                  <input
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    type="text"
+                    className="form-input"
+                    id="name"
+                    placeholder="Enter name"
+                  />
+                  {formik.touched.name && formik.errors.name ? (
+                    <div className="text-error">{formik.errors.name}</div>
+                  ) : null}
+
+                  <div htmlFor="inputAge" className="form-label">
+                    Email
+                  </div>
+                  <input
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    type="text"
+                    className="form-input"
+                    id="email"
+                  />
+                  {formik.touched.email && formik.errors.email ? (
+                    <div className="text-error">{formik.errors.email}</div>
+                  ) : null}
+
+                  <div className="form-label">
+                    Upload Picture (JPG/PNG/JPEG)
+                  </div>
+                  <AttachImage onChange={(value) => setSavePicture(value)} />
+
+                  <div htmlFor="inputAge" className="form-label">
+                    Phone Number
+                  </div>
+                  <input
+                    value={formik.values.phoneNumber}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    type="text"
+                    className="form-input"
+                    id="phoneNumber"
+                  />
+                  {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                    <div className="text-error">
+                      {formik.errors.phoneNumber}
+                    </div>
+                  ) : null}
+
+                  <div className="text-end user-buttons">
+                    <Button className="save-button" type="submit">
+                      Save Changes
+                    </Button>
+                    <Button
+                      className="cancel-button"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </form>
               </div>
-            </div>
+            </Container>
           </div>
         </div>
-      </Container>
+      </div>
     </>
   );
 }
