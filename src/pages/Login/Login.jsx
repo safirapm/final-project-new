@@ -47,9 +47,9 @@ function Login() {
 
           window.location.href = "/";
         })
-        .catch((err) => {
-          const showError = err.response.data.status_message;
-          alert(showError);
+        .catch((error) => {
+          console.error(error);
+          alert("Invalid email and/or password.");
         });
     },
   });
