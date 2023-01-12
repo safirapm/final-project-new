@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useRef, useState } from "react";
-// import "../Form/Form.css";
+import "./AttachImage.css";
 
 const AttachImage = ({ onChange }) => {
   const [savePicture, setSavePicture] = useState("");
 
   const fileUpload = useRef(null);
 
-  // upload image
   function handleUploadChange(e) {
     console.log(e.target.files[0]);
     let uploaded = e.target.files[0];
@@ -16,7 +15,7 @@ const AttachImage = ({ onChange }) => {
 
   function uploadImage() {
     if (!savePicture) {
-      alert("please upload a image first");
+      alert("Please upload an image first.");
     } else {
       console.log(fileUpload.current.files[0]);
       let formData = new FormData();
@@ -32,50 +31,52 @@ const AttachImage = ({ onChange }) => {
 
       axios
         .post(
-          `${process.env.REACT_APP_BASEURL}/api/v1/upload-image`,
+          `${process.env.REACT_APP_BASEURL}api/v1/upload-image`,
           formData,
           configurasi
         )
         .then(function (response) {
           console.log(response);
           onChange(response.data.url);
+          alert("Uploading picture successful.");
         })
         .catch(function (error) {
           console.log(error);
+          alert(
+            "Uploading picture failed. Please try again. (File is too big/invalid image)."
+          );
         })
 
         .then((response) => {
           console.log(response);
-          alert("Upload Picture successful !!");
         })
         .catch((error) => {
           console.error(error);
-          alert("Upload Picture Failed !!");
         });
     }
   }
 
   return (
-    <div className="d-flex">
-      <div className="input-field">
+    <>
+      <div className="d-flex mb-2">
         <input
-          type="file"
-          ref={fileUpload}
           id="formFile"
-          onChange={handleUploadChange}
+          ref={fileUpload}
+          type="file"
           accepts="image/*"
-          className="add-input"
+          onChange={handleUploadChange}
+          className="form-control input-file"
         />
+        <button
+          onClick={uploadImage}
+          className="btn btn-primary upload-file"
+          encType="multipart/form-data"
+          type="button"
+        >
+          Upload
+        </button>
       </div>
-      <button
-        className="btn-upload"
-        type="button"
-        id="inputGroupFileAddon04"
-        onClick={uploadImage}
-      >
-        Upload
-      </button>
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,26 @@
+.input-file {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.upload-file {
+    background-color: #4b6587;
+    color: #F0E5CF;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'General Sans', sans-serif;
+}
+
+.upload-file:hover{
+    background-color: #F0E5CF;
+    color: #4b6587;
+}
+
+.upload-file:active {
+    --bs-btn-active-bg: #2c3b4f;
+    --bs-btn-active-border-color: #2c3b4f;
+    --bs-btn-active-color: #F0E5CF;
+}
