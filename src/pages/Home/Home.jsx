@@ -1,5 +1,5 @@
 import "./Home.css";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import FoodCard from "../../components/Food Card/FoodCard";
 import MostFav from "../../components/MostFav/MostFav";
 import ImgPic1Section1 from "../../img/pic4-section1.jpeg";
@@ -27,7 +27,7 @@ function Home() {
           <Container className="section1-all">
             <div className="section1-box">
               <div className="section1-img">
-                <img src={ImgPic1Section1} />
+                <img src={ImgPic1Section1} alt="Hokagay - Anime Food" />
               </div>
               <div className="section1-box-text">
                 <h4>Making Anime Food into Reality with HOKAGAY</h4>
@@ -41,7 +41,7 @@ function Home() {
             </div>
             <div className="section1-box">
               <div className="section1-img">
-                <img src={ImgPic2Section1} />
+                <img src={ImgPic2Section1} alt="Chicken Tikka Masala" />
               </div>
               <div className="section1-box-text">
                 <h4>Chicken Tikka Masala is Not from India?</h4>
@@ -55,7 +55,7 @@ function Home() {
             </div>
             <div className="section1-box">
               <div className="section1-img">
-                <img src={ImgPic3Section1} />
+                <img src={ImgPic3Section1} alt="Russian Culinary" />
               </div>
               <div className="section1-box-text">
                 <h4>Food Travels #1: The Underrated Russian Culinary</h4>

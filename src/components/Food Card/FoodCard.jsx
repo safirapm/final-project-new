@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Container, Col, Card, Button, Modal } from "react-bootstrap";
-import ImgPic1Section1 from "../../img/pic4-section1.jpeg";
+import { Container } from "react-bootstrap";
 import "./FoodCard.css";
 
 function FoodCard() {

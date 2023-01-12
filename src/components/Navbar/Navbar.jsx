@@ -37,7 +37,12 @@ function NavHome() {
         >
           <Container fluid>
             <Navbar.Brand href="/" className="brand">
-              <img src={imgLogo1} style={{ maxWidth: "30px" }} /> foodieasy
+              <img
+                src={imgLogo1}
+                alt="Foodieasy"
+                style={{ maxWidth: "30px" }}
+              />{" "}
+              foodieasy
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Offcanvas

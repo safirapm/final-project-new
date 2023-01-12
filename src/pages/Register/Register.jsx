@@ -2,7 +2,7 @@ import "./Register.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function Register() {
   const formik = useFormik({

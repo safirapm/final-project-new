@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./Favorites.css";
-import { Col, Row, Card, Button, Container, Carousel } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function Favorites() {
   const [myFavorite, setMyFavorite] = useState();
@@ -80,7 +79,7 @@ function Favorites() {
                 <Container key={food.id} className="foodcard1-all">
                   <div className="foodcard1-box">
                     <div className="foodcard1-img">
-                      <img src={food.imageUrl} />
+                      <img src={food.imageUrl} alt={food.name} />
                     </div>
                     <div className="foodcard1-box-text">
                       <a key={food.id} href={`/details/${food.id}`}>

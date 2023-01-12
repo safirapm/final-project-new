@@ -46,6 +46,7 @@ function Details() {
 
   useEffect(() => {
     getRating();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodID]);
 
   const handleSubmit = (e) => {
@@ -92,7 +93,10 @@ function Details() {
           <div className="detail-box">
             <div className="detail-info">
               <div className="detail-img">
-                <img src={allDetail && allDetail.imageUrl} />
+                <img
+                  src={allDetail && allDetail.imageUrl}
+                  alt={allDetail && allDetail.name}
+                />
               </div>
               <div className="detail-text">
                 <h3 className="text-capitalize">
@@ -158,7 +162,10 @@ function Details() {
                       className="d-flex justify-content-between align-items-start"
                     >
                       <div className="listgroup-img">
-                        <img src={rate.user.profilePictureUrl} />
+                        <img
+                          src={rate.user.profilePictureUrl}
+                          alt={rate.user.name}
+                        />
                       </div>
                       <div className="ms-2 me-auto">
                         <div

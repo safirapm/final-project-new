@@ -14,50 +14,28 @@ function Footer() {
                   <li>
                     <a href="/about">About Us</a>
                   </li>
-                  <li>
-                    <a href="#">Our Services</a>
-                  </li>
-                  <li>
-                    <a href="#">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="#">Affiliate Program</a>
-                  </li>
+                  <li>Our Services</li>
+                  <li>Privacy Policy</li>
+                  <li>Affiliate Program</li>
                 </ul>
               </div>
 
               <div className="footer-col">
                 <h4>Get Help</h4>
                 <ul className="footer-ul">
-                  <li>
-                    <a href="#">FAQ</a>
-                  </li>
-                  <li>
-                    <a href="#">Subscriptions</a>
-                  </li>
-                  <li>
-                    <a href="#">How Foodieasy Works</a>
-                  </li>
-                  <li>
-                    <a href="#">Cookie Preferences</a>
-                  </li>
+                  <li>FAQ</li>
+                  <li>Subscriptions</li>
+                  <li>How Foodieasy Works</li>
+                  <li>Cookie Preferences</li>
                 </ul>
               </div>
               <div className="footer-col">
                 <h4>Recipes</h4>
                 <ul className="footer-ul">
-                  <li>
-                    <a href="#">Main Course</a>
-                  </li>
-                  <li>
-                    <a href="#">Snacks</a>
-                  </li>
-                  <li>
-                    <a href="#">Dessert</a>
-                  </li>
-                  <li>
-                    <a href="#">Beverages</a>
-                  </li>
+                  <li>Main Course</li>
+                  <li>Snacks</li>
+                  <li>Dessert</li>
+                  <li>Beverages</li>
                 </ul>
               </div>
               <div className="footer-col">
@@ -65,24 +43,16 @@ function Footer() {
                 <div className="social-media">
                   <ul className="footer-ul">
                     <li>
-                      <a href="#">
-                        <i className="bi bi-facebook"></i>
-                      </a>
+                      <i className="bi bi-facebook"></i>
                     </li>
                     <li>
-                      <a href="#">
-                        <i className="bi bi-twitter"></i>
-                      </a>
+                      <i className="bi bi-twitter"></i>
                     </li>
                     <li>
-                      <a href="#">
-                        <i className="bi bi-instagram"></i>
-                      </a>
+                      <i className="bi bi-instagram"></i>
                     </li>
                     <li>
-                      <a href="#">
-                        <i className="bi bi-github"></i>
-                      </a>
+                      <i className="bi bi-github"></i>
                     </li>
                   </ul>
                 </div>
