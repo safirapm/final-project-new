@@ -103,7 +103,7 @@
 .rate-button {
     display: inline-flex;
     font-size: 14px;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .listgroup-container {
