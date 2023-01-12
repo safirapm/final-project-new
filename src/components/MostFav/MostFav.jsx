@@ -42,7 +42,9 @@ function MostFav() {
                       <img src={food.imageUrl} />
                     </div>
                     <a key={food.id} href={`/details/${food.id}`}>
-                      <div className="mostfav-name">{food.name}</div>
+                      <div className="mostfav-name text-capitalize">
+                        {food.name}
+                      </div>
                     </a>
                   </div>
                 </Container>
