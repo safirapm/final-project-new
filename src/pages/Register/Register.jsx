@@ -2,9 +2,13 @@ import "./Register.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
+import AttachImage from "../../components/Attach Image/AttachImage";
+import React, { useState } from "react";
 
 function Register() {
+  const [savePicture, setSavePicture] = useState("");
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -12,7 +16,6 @@ function Register() {
       password: "",
       passwordRepeat: "",
       role: "",
-      profilePictureUrl: "",
       phoneNumber: "",
     },
     validationSchema: Yup.object({
@@ -32,7 +35,9 @@ function Register() {
       passwordRepeat: Yup.string()
         .oneOf([Yup.ref("password")], "Password does not match")
         .required("Required"),
-      profilePictureUrl: Yup.string().required("Required"),
+      role: Yup.string()
+        .oneOf(["admin", "user"], "Select Role")
+        .required("Required"),
       phoneNumber: Yup.string()
         .min(10, "Must be 10 characters or more")
         .max(12, "Must be 12 characters or less")
@@ -53,14 +58,14 @@ function Register() {
           password: values.password,
           passwordRepeat: values.passwordRepeat,
           role: values.role,
-          profilePictureUrl: values.profilePictureUrl,
+          profilePictureUrl: savePicture,
           phoneNumber: values.phoneNumber,
         },
       })
         .then((res) => {
           console.log(res);
           alert("Your account is registered. Log in to access Foodieasy.");
-          window.location.reload();
+          window.location.href = "/";
         })
         .catch((error) => {
           console.log(error);
@@ -71,15 +76,12 @@ function Register() {
   return (
     <>
       <Container className="login-container">
-        <div className="register-box">
-          <div>Join to become a part of us!</div>
-          <p>Already have an account? Log in here.</p>
-        </div>
-        <Container className="input-container">
+        <Container className="register-container">
+          <h5 className="text-center">Register Account</h5>
           <form onSubmit={formik.handleSubmit}>
-            <div className="mb-8 input-label mobile-login">Name</div>
+            <div className="input-label">Name</div>
             <input
-              className="register-input"
+              className="form-control"
               id="name"
               name="name"
               type="text"
@@ -94,10 +96,11 @@ function Register() {
 
             <div className="mt-10 mb-8 input-label">Email</div>
             <input
-              className="register-input"
+              className="form-control"
               id="email"
               name="email"
               type="email"
+              placeholder="Enter Email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
@@ -108,7 +111,7 @@ function Register() {
 
             <div className="mt-10 mb-8 input-label">Password</div>
             <input
-              className="register-input"
+              className="form-control"
               id="password"
               name="password"
               type="password"
@@ -119,12 +122,12 @@ function Register() {
             />
 
             {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
+              <div className="no-input">{formik.errors.password}</div>
             ) : null}
 
             <div>Confirm Password</div>
             <input
-              className="register-input"
+              className="form-control"
               id="passwordRepeat"
               name="passwordRepeat"
               type="password"
@@ -134,11 +137,11 @@ function Register() {
               value={formik.values.passwordRepeat}
             />
             {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
-              <div>{formik.errors.passwordRepeat}</div>
+              <div className="no-input">{formik.errors.passwordRepeat}</div>
             ) : null}
             <div>Role</div>
             <select
-              className="register-input"
+              className="form-select"
               id="role"
               name="role"
               component="select"
@@ -152,38 +155,45 @@ function Register() {
               <option value="user">User</option>
             </select>
 
-            <div>Profile Picture URL</div>
-            <input
-              className="register-input"
-              id="profilePictureUrl"
-              name="profilePictureUrl"
-              type="url"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.profilePictureUrl}
-            />
-            {formik.touched.profilePictureUrl &&
-            formik.errors.profilePictureUrl ? (
-              <div>{formik.errors.profilePictureUrl}</div>
-            ) : null}
             <div>Phone Number</div>
             <input
-              className="register-input"
+              className="form-control"
               id="phoneNumber"
               name="phoneNumber"
               type="text"
+              placeholder="Enter phone number"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.phoneNumber}
             />
             {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-              <div>{formik.errors.phoneNumber}</div>
+              <div className="no-input">{formik.errors.phoneNumber}</div>
             ) : null}
 
-            <input className="register-btn" type="submit" value="Register" />
+            <div>Profile Picture (JPG/PNG/JPEG)</div>
+            <AttachImage onChange={(value) => setSavePicture(value)} />
+
+            <Button className="submit-btn" type="submit" value="Register">
+              Register
+            </Button>
           </form>
         </Container>
+
+        <div className="bottom-container text-center">
+          <p>
+            Have an account?{" "}
+            <span>
+              <a href="/" className="bottom-hyperlink">
+                Sign in here.
+              </a>
+            </span>
+          </p>
+        </div>
       </Container>
+
+      <div className="footer footer-before text-center text-light">
+        © All Rights Reserved 2023. Created by <b>Safira Paramita Mustamsir</b>.
+      </div>
     </>
   );
 }
