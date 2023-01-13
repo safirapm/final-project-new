@@ -18,7 +18,7 @@
     background-size:cover;
     align-items: center;
     justify-content: center;
-    background-image:linear-gradient(#ffffffcd, #c8c6c695),url("../../img/pic3-home.jpeg")
+    background-image:linear-gradient(#ffffffcd, #c8c6c695),url("../../img/home-header.webp")
 }
 
 .text-header {
@@ -131,7 +131,7 @@
     margin-top: 30px;
     padding: 30px 30px;
     min-height: 10vh;
-    background-image:linear-gradient(#c8c6c682, #ffffff7c), url("../../img/pic7-section2.jpeg");
+    background-image:linear-gradient(#c8c6c682, #ffffff7c), url("../../img/home-section-2.webp");
     background-position: center;
     background-attachment:fixed;
     background-size:cover;

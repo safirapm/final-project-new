@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import Logout from "../Log Out/Logout";
 import "./Navbar.css";
-import imgLogo1 from "../../img/logo1.png";
+import imgLogo from "../../img/logo.webp";
 
 function NavHome() {
   const [navbar, setNavbar] = useState(false);
@@ -37,11 +37,7 @@ function NavHome() {
         >
           <Container fluid>
             <Navbar.Brand href="/" className="brand">
-              <img
-                src={imgLogo1}
-                alt="Foodieasy"
-                style={{ maxWidth: "30px" }}
-              />{" "}
+              <img src={imgLogo} alt="Foodieasy" style={{ maxWidth: "30px" }} />{" "}
               foodieasy
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />

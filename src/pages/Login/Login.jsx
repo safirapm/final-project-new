@@ -3,7 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Container, Form } from "react-bootstrap";
-import imgLogo from "../../img/logo1.webp";
+import imgLogo from "../../img/logo.webp";
 import "./Login.css";
 
 function Login() {

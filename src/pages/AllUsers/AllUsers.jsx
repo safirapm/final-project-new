@@ -4,10 +4,15 @@ import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 import { Container, Button } from "react-bootstrap";
 import { getAllUsers } from "../../API";
+import avatarImage from "../../img/avatar.webp";
 import "./AllUsers.css";
 
 function AllUsers() {
   const [allUser, setAllUser] = useState([]);
+
+  const onImageError = (e) => {
+    e.target.src = avatarImage;
+  };
 
   useEffect(() => {
     getAllUsers().then((result) => {
@@ -67,7 +72,15 @@ function AllUsers() {
               <Container key={user.id} className="foodcard1-all">
                 <div className="foodcard1-box d-flex flex-column">
                   <div className="foodcard1-img">
-                    <img src={user.profilePictureUrl} alt={user.name} />
+                    <img
+                      src={
+                        user.profilePictureUrl
+                          ? user.profilePictureUrl
+                          : avatarImage
+                      }
+                      alt={user.name}
+                      onError={onImageError}
+                    />
                   </div>
                   <div className="allusers-box-text">
                     <h4 className="text-capitalize">{user.name}</h4>
@@ -129,8 +142,13 @@ function AllUsers() {
                             </div>
                             <div className="alluser-box">
                               <img
-                                src={user.profilePictureUrl}
+                                src={
+                                  user.profilePictureUrl
+                                    ? user.profilePictureUrl
+                                    : avatarImage
+                                }
                                 alt={user.name}
+                                onError={onImageError}
                               />
                               <h5 className="card-title text-center mt-2">
                                 {user.name}

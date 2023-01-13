@@ -2,9 +2,9 @@ import "./Home.css";
 import { Container } from "react-bootstrap";
 import FoodCard from "../../components/Food Card/FoodCard";
 import MostFav from "../../components/MostFav/MostFav";
-import ImgPic1Section1 from "../../img/pic4-section1.jpeg";
-import ImgPic2Section1 from "../../img/pic5-section1.jpeg";
-import ImgPic3Section1 from "../../img/pic6-section1.webp";
+import blogHome1 from "../../img/home-blog-1.webp";
+import blogHome2 from "../../img/home-blog-2.webp";
+import blogHome3 from "../../img/home-blog-3.webp";
 function Home() {
   return (
     <>
@@ -27,7 +27,7 @@ function Home() {
           <Container className="section1-all">
             <div className="section1-box">
               <div className="section1-img">
-                <img src={ImgPic1Section1} alt="Hokagay - Anime Food" />
+                <img src={blogHome1} alt="Hokagay - Anime Food" />
               </div>
               <div className="section1-box-text">
                 <h4>Making Anime Food into Reality with HOKAGAY</h4>
@@ -41,7 +41,7 @@ function Home() {
             </div>
             <div className="section1-box">
               <div className="section1-img">
-                <img src={ImgPic2Section1} alt="Chicken Tikka Masala" />
+                <img src={blogHome2} alt="Chicken Tikka Masala" />
               </div>
               <div className="section1-box-text">
                 <h4>Chicken Tikka Masala is Not from India?</h4>
@@ -55,7 +55,7 @@ function Home() {
             </div>
             <div className="section1-box">
               <div className="section1-img">
-                <img src={ImgPic3Section1} alt="Russian Culinary" />
+                <img src={blogHome3} alt="Russian Culinary" />
               </div>
               <div className="section1-box-text">
                 <h4>Food Travels #1: The Underrated Russian Culinary</h4>
@@ -73,7 +73,9 @@ function Home() {
           <h2>
             with <span className="section2-span">Foodieasy</span>, you can:
           </h2>
-          <h3>explore, share, and like recipes.</h3>
+          <h3>
+            <b>explore</b>, <b>share</b>, and <b>like</b> recipes.
+          </h3>
           <h3>it's easy, isn't it? (no pun intended)</h3>
         </Container>
 

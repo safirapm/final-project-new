@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import imgPicXAbout1 from "../../img/picx-about1.jpeg";
+import aboutTeam from "../../img/about-team.webp";
 import "./AboutUs.css";
 
 function AboutUs() {
@@ -19,11 +19,7 @@ function AboutUs() {
             foods at home.
           </p>
           <h3>Our Team</h3>
-          <img
-            className="aboutimg"
-            src={imgPicXAbout1}
-            alt="Foodieasy's Team"
-          />
+          <img className="aboutimg" src={aboutTeam} alt="Foodieasy's Team" />
           <p style={{ display: "flex", justifyContent: "center" }}>
             It started with the three of us, and now we're with with thousands
             travelers and more thousands to come.

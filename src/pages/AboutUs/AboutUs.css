@@ -6,7 +6,7 @@
 }
 
 .intro-1 {
-    background-image: linear-gradient(#ffffff7c, rgba(255, 255, 255, 0)), url("../../img/picx-about2.jpeg");
+    background-image: linear-gradient(#ffffff7c, rgba(255, 255, 255, 0)), url("../../img/about-header.webp");
     max-width: 100%;
     min-height: 60vh;
     background-position: bottom;

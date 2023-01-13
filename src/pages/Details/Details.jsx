@@ -5,9 +5,14 @@ import { useParams } from "react-router-dom";
 import "./Details.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import avatarImage from "../../img/avatar.webp";
 
 function Details() {
   const [allDetail, setAllDetail] = useState("");
+
+  const onImageError = (e) => {
+    e.target.src = avatarImage;
+  };
 
   const [rating, setRating] = useState();
   const { foodID } = useParams();
@@ -178,8 +183,13 @@ function Details() {
                       >
                         <div className="listgroup-img">
                           <img
-                            src={rate.user.profilePictureUrl}
+                            src={
+                              rate.user.profilePictureUrl
+                                ? rate.user.profilePictureUrl
+                                : avatarImage
+                            }
                             alt={rate.user.name}
+                            onError={onImageError}
                           />
                         </div>
                         <div className="ms-2 me-auto">

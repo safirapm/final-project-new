@@ -4,11 +4,16 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import AttachImage from "../../components/Attach Image/AttachImage";
 import { Container, Button } from "react-bootstrap";
+import avatarImage from "../../img/avatar.webp";
 import "./Profile.css";
 
 function Profile() {
   const [profile, setProfile] = useState();
   const [savePicture, setSavePicture] = useState("");
+
+  const onImageError = (e) => {
+    e.target.src = avatarImage;
+  };
 
   const getProfile = () => {
     axios({
@@ -88,8 +93,13 @@ function Profile() {
           <div className="profile-data">
             <div className="profile-img">
               <img
-                src={profile && profile.profilePictureUrl}
+                src={
+                  profile && profile.profilePictureUrl
+                    ? profile && profile.profilePictureUrl
+                    : avatarImage
+                }
                 alt={profile && profile.name}
+                onError={onImageError}
               />
             </div>
             <div className="profile-text">
@@ -142,8 +152,13 @@ function Profile() {
                 <form onSubmit={(e) => handleSubmit(e, profile.id)}>
                   <div className="form-img">
                     <img
-                      src={profile && profile.profilePictureUrl}
+                      src={
+                        profile && profile.profilePictureUrl
+                          ? profile && profile.profilePictureUrl
+                          : avatarImage
+                      }
                       alt={profile && profile.name}
+                      onError={onImageError}
                     />
                   </div>
                   <div htmlFor="inputName" className="form-label">

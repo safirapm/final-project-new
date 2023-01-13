@@ -13,10 +13,10 @@
 }
 
 .profile-box {
+    padding-top: 20px;
     height: 100%;
     width: 100%;
     max-width: 450px;
-
 
     border-top: solid 1px #4B6587;
     border-left: solid 1px #4B6587;
@@ -35,11 +35,12 @@
 }
 
 .profile-img img {
-    width: 100%;
+    width: 300px;
     height: 300px;
     object-fit: cover;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
+    border-radius:50%;
+    border-top: solid 1px #4B6587;
+    border-bottom: solid 1px #4B6587;
 }
 
 .profile-text {

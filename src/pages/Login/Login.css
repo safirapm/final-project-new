@@ -10,7 +10,7 @@
     min-height: 100vh;
     background-size:cover;
     background-position:center;
-    background-image:linear-gradient(#fff, rgba(255, 255, 255, 0.155)), url("../../img/pic1-login.jpeg");
+    background-image:linear-gradient(#fff, rgba(255, 255, 255, 0.155)), url("../../img/login.webp");
 }
 
 .input-container {
