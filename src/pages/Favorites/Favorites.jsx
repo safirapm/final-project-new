@@ -71,7 +71,7 @@ function Favorites() {
   return (
     <>
       <Container className="favorite-section">
-        <h2>My Favorite</h2>
+        <h3>My Favorites</h3>
         <Container className="foodcard1-all pd-10">
           {myFavorite &&
             myFavorite.map((food) => {
