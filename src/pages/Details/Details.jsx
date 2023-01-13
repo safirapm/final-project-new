@@ -1,4 +1,4 @@
-import { Container, ListGroup, Badge, Button } from "react-bootstrap";
+import { Container, ListGroup, Badge, Button, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -103,94 +103,110 @@ function Details() {
                   {allDetail && allDetail.name}
                 </h3>
                 <p>
-                  <i
-                    className="bi bi-blockquote-left"
-                    style={{ color: "#4B6587" }}
-                  ></i>{" "}
+                  <i className="bi bi-blockquote-left detail-infocon"></i>{" "}
                   {allDetail && allDetail.description}
                 </p>
                 <p>
-                  <i
-                    className="bi bi-card-checklist"
-                    style={{ color: "#4B6587" }}
-                  ></i>{" "}
+                  <i className="bi bi-basket2-fill detail-infocon"></i>{" "}
                   {allDetail &&
                     allDetail.ingredients.map((m, index) => {
                       return <span key={index}>{(index ? ", " : "") + m}</span>;
                     })}
                 </p>
+                <p>
+                  <i className="bi bi-card-heading detail-infocon"></i> Created
+                  at {allDetail && allDetail.createdAt}
+                </p>
+                <p>
+                  <i className="bi bi-card-checklist detail-infocon"></i>{" "}
+                  Updated at {allDetail && allDetail.updatedAt}
+                </p>
               </div>
             </div>
             <div className="card-footer detail-footer">
               <div className="detail-footer-2">
-                <div className="detail-icons">
-                  <i
-                    className="bi bi-star-fill"
-                    style={{ color: "#FFCC00" }}
-                  ></i>{" "}
-                  {allDetail && allDetail.rating} |{" "}
-                  <i
-                    className="bi bi-heart-fill"
-                    style={{ color: "#DD4A48" }}
-                  ></i>{" "}
-                  {allDetail && allDetail.totalLikes}
-                </div>
-                <div className="text-end details-rate">
-                  <Button
-                    type="button"
-                    className="rate-button"
-                    data-bs-toggle="modal"
-                    data-bs-target={`#rating${allDetail && allDetail.id}`}
-                  >
-                    Rate Food
-                  </Button>
-                </div>
+                <Row>
+                  <Col>
+                    <div className="detail-icons">
+                      <i
+                        className="bi bi-star-fill"
+                        style={{ color: "#FFCC00" }}
+                      ></i>{" "}
+                      {allDetail && allDetail.rating} |{" "}
+                      <i
+                        className="bi bi-heart-fill"
+                        style={{ color: "#DD4A48" }}
+                      ></i>{" "}
+                      {allDetail && allDetail.totalLikes}
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="text-end details-rate">
+                      <Button
+                        type="button"
+                        className="rate-button"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#rating${allDetail && allDetail.id}`}
+                      >
+                        Rate Food
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
               </div>
             </div>
           </div>
 
-          <div className="text-start">
-            <h3 className="fs-4">Reviews</h3>
-          </div>
-          <Container className="listgroup-container">
-            {rating &&
-              rating.map((rate) => {
-                return (
-                  <ListGroup as="ol" key={rate.id} className="listgroup-items">
-                    <ListGroup.Item
-                      as="li"
-                      className="d-flex justify-content-between align-items-start"
+          <Container className="reviews-box">
+            <div className="text-center">
+              <h3 className="fs-4">
+                <b>Reviews</b>
+              </h3>
+            </div>
+            <Container className="listgroup-container">
+              {rating &&
+                rating.map((rate) => {
+                  return (
+                    <ListGroup
+                      as="ol"
+                      key={rate.id}
+                      className="listgroup-items"
                     >
-                      <div className="listgroup-img">
-                        <img
-                          src={rate.user.profilePictureUrl}
-                          alt={rate.user.name}
-                        />
-                      </div>
-                      <div className="ms-2 me-auto">
-                        <div
-                          className="fw-bold"
-                          style={{ fontFamily: "'General Sans', sans-serif" }}
-                        >
-                          {rate.user.name}
-                        </div>
-                        <div className="listgroup-review">{rate.review}</div>
-                      </div>
-                      <Badge
-                        bg="none"
-                        pill
-                        style={{ color: "#444", fontSize: "14px" }}
+                      <ListGroup.Item
+                        as="li"
+                        className="d-flex justify-content-between align-items-start"
                       >
-                        <i
-                          className="bi bi-star-fill"
-                          style={{ color: "#FFCC00" }}
-                        ></i>{" "}
-                        {rate.rating}
-                      </Badge>
-                    </ListGroup.Item>
-                  </ListGroup>
-                );
-              })}
+                        <div className="listgroup-img">
+                          <img
+                            src={rate.user.profilePictureUrl}
+                            alt={rate.user.name}
+                          />
+                        </div>
+                        <div className="ms-2 me-auto">
+                          <div
+                            className="fw-bold"
+                            style={{ fontFamily: "'General Sans', sans-serif" }}
+                          >
+                            {rate.user.name}
+                          </div>
+                          <div className="listgroup-review">{rate.review}</div>
+                        </div>
+                        <Badge
+                          bg="none"
+                          pill
+                          style={{ color: "#444", fontSize: "14px" }}
+                        >
+                          <i
+                            className="bi bi-star-fill"
+                            style={{ color: "#FFCC00" }}
+                          ></i>{" "}
+                          {rate.rating}
+                        </Badge>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  );
+                })}
+            </Container>
           </Container>
 
           <div

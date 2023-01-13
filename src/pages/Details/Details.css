@@ -62,6 +62,11 @@
 
 .detail-text p {
     margin-bottom: 2px;
+
+}
+
+.detail-infocon {
+    color: #4B6587;
 }
 
 .detail-container img {
@@ -87,10 +92,6 @@
 
     width: 100%;
     padding-top: 10px;
-    padding-bottom: 10px;
-
-    display:flex;
-    flex-direction: row;
 }
 
 .detail-icons {
@@ -98,12 +99,41 @@
     color: #444;
     font-size: 14px;
     margin-left: 20px;
+    margin-top: 4px;
+
+}
+
+.details-rate {
+    margin-right: 15px;
+    margin-bottom: 10px;
 }
 
 .rate-button {
-    display: inline-flex;
-    font-size: 14px;
-    justify-content: flex-end;
+    font-family: 'General Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13.5px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    border-radius: 4px;
+    background-color: #4B6587;
+    color: #F0E5CF;
+    box-shadow: 0 2px 10px #aba9a9;
+}
+
+.rate-button:hover {
+    background-color: #2c3b4f;
+    color: #F0E5CF;
+}
+
+.rate-button:active {
+    --bs-btn-active-bg: #4B6587;
+    --bs-btn-active-color: #F0E5CF;
+}
+
+.reviews-box {
+    margin-top: 30px;
 }
 
 .listgroup-container {
@@ -131,5 +161,4 @@
 .listgroup-review {
     border-top: solid .5px #444;
     width: 100%;
-
 }
