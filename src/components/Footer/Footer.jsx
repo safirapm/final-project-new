@@ -58,6 +58,10 @@ function Footer() {
                 </div>
               </div>
             </Row>
+            <div className="footer-name text-center text-light">
+              © All Rights Reserved 2023. Created by{" "}
+              <b>Safira Paramita Mustamsir</b>.
+            </div>
           </Container>
         </div>
       ) : null}

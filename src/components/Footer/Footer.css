@@ -78,6 +78,13 @@
     }
 }
 
+.footer-name {
+    font-family: 'General Sans', sans-serif;
+    font-weight: 500;
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+}
+
 @media screen and (max-width: 420px) {
     .carousel-item img {
         height: 300px !important;
