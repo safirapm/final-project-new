@@ -159,7 +159,7 @@ function Profile() {
                     placeholder="Enter name"
                   />
                   {formik.touched.name && formik.errors.name ? (
-                    <div className="text-error">{formik.errors.name}</div>
+                    <div className="no-input">{formik.errors.name}</div>
                   ) : null}
 
                   <div htmlFor="inputAge" className="form-label">
@@ -174,7 +174,7 @@ function Profile() {
                     id="email"
                   />
                   {formik.touched.email && formik.errors.email ? (
-                    <div className="text-error">{formik.errors.email}</div>
+                    <div className="no-input">{formik.errors.email}</div>
                   ) : null}
 
                   <div className="form-label">
@@ -194,9 +194,7 @@ function Profile() {
                     id="phoneNumber"
                   />
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                    <div className="text-error">
-                      {formik.errors.phoneNumber}
-                    </div>
+                    <div className="no-input">{formik.errors.phoneNumber}</div>
                   ) : null}
 
                   <div className="text-end user-buttons">
