@@ -65,11 +65,9 @@ function NavHome() {
                   <Nav.Link href="/favorites">Favorites</Nav.Link>
                   <Nav.Link href="/about">About Us</Nav.Link>
                   {localStorage.getItem("role") === "admin" ? (
-                    <>
-                      <Nav.Link href="/add-food">Add Food</Nav.Link>
-                      <Nav.Link href="/food-list">Food List</Nav.Link>
-                    </>
+                    <Nav.Link href="/add-food">Add Food</Nav.Link>
                   ) : null}
+                  <Nav.Link href="/food-list">Food List</Nav.Link>
                   <NavDropdown
                     align="end"
                     title={localStorage.getItem("name")}
@@ -79,9 +77,11 @@ function NavHome() {
                     <NavDropdown.Item href="/profile">
                       Edit Profile
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/all-users">
-                      All Users
-                    </NavDropdown.Item>
+                    {localStorage.getItem("role") === "admin" ? (
+                      <NavDropdown.Item href="/all-users">
+                        All Users
+                      </NavDropdown.Item>
+                    ) : null}
                     <NavDropdown.Item href="#">Contact Us</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item>
