@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Container, Form } from "react-bootstrap";
+import imgLogo from "../../img/logo1.webp";
 import "./Login.css";
 
 function Login() {
@@ -59,38 +60,22 @@ function Login() {
       <Container className="login-container">
         <div className="login-box">
           <Container className="input-container">
-            <h2 style={{ textShadow: "#F5EEDC 1px 0 10px" }}>
-              Welcome to{" "}
-              <span
-                style={{
-                  fontWeight: "bold",
-                  fontFamily: "'Poppins', sans-serif",
-                  color: "#4B6587",
-                  textShadow: "#F5EEDC 1px 0 10px",
-                }}
-              >
-                Foodieasy
-              </span>
-            </h2>
-            <p>
-              Are you new? Come{" "}
-              <span>
-                <a href="/register">join us</a>
-              </span>{" "}
-              now!
-            </p>
-            <h2>Sign in here</h2>
+            <div className="logo-container">
+              <img src={imgLogo} alt="Foodieasy" />
+              <h3 className="text-center">Foodieasy</h3>
+            </div>
+            <h5 className="text-center">Log In</h5>
             <form onSubmit={formik.handleSubmit}>
-              <div className="mb-8 input-label mobile-login" htmlFor="email">
+              <div className="mb-1" htmlFor="email">
                 Email
               </div>
               <input
-                className="login-input"
+                className="form-control"
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
-                placeholder="foodieasy@gmail.com"
+                placeholder="Type your email"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
@@ -99,13 +84,13 @@ function Login() {
                 <div className="no-input">{formik.errors.email}</div>
               ) : null}
               <div
-                className="mt-10 mb-8 input-label mobile-login"
+                className="mt-2 mb-1 input-label mobile-login"
                 htmlFor="password"
               >
                 Password
               </div>
               <input
-                className="login-input"
+                className="form-control"
                 id="password"
                 name="password"
                 autoComplete="current-password"
@@ -120,7 +105,7 @@ function Login() {
               ) : null}
               <>
                 {["Show Password"].map((type) => (
-                  <div key={`${type}`} className="mt-10 show-password">
+                  <div key={`${type}`} className="mt-2 show-password">
                     <Form.Check
                       type="checkbox"
                       id={`${type}`}
@@ -133,14 +118,28 @@ function Login() {
               <button
                 type="submit"
                 value="Login"
-                className="btn btn-light signin-btn"
+                className="btn btn-primary submit-btn"
               >
                 Log In
               </button>
             </form>
           </Container>
         </div>
+
+        <div className="bottom-container text-center">
+          <p>
+            Are you new?{" "}
+            <span>
+              <a href="/register" className="bottom-hyperlink">
+                Sign up here.
+              </a>
+            </span>
+          </p>
+        </div>
       </Container>
+      <div className="footer footer-before text-center text-light">
+        © All Rights Reserved 2023. Created by <b>Safira Paramita Mustamsir</b>.
+      </div>
     </>
   );
 }
