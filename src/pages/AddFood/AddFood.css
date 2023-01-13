@@ -91,9 +91,3 @@
     --bs-btn-active-color: #F0E5CF;
     --bs-btn-active-border-color: #2d3b4d;
 }
-
-.text-error {
-    color: #c21807;
-    font-size: 12px;
-    font-weight: 500;
-}

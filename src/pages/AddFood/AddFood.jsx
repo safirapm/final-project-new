@@ -43,7 +43,7 @@ const AddFood = ({ onSuccess }) => {
         <label htmlFor={props.id || props.name}>{label}</label>
         <input className="text-input form-control" {...field} {...props} />
         {meta.touched && meta.error ? (
-          <div className="text-error">{meta.error}</div>
+          <div className="no-input">{meta.error}</div>
         ) : null}
       </div>
     );
