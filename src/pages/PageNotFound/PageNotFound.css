@@ -1,0 +1,39 @@
+.notfound-container {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    min-height: 100vh;
+    padding: 15px 15px;
+}
+
+.notfound-text h4 {
+    font-family: 'General Sans', sans-serif;
+    font-weight: 600;
+    color: #4B6587;
+    margin-bottom: 4px;
+}
+
+.notfound-text p {
+    line-height: 21px;
+    margin-bottom: 10px;
+}
+
+.submithome-button {
+    font-family: 'General Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    
+    background-color: #4B6587;
+    color:#F0E5CF
+}
+
+.submithome-button:hover {
+    background-color: #2c3b4f;
+    color:#F0E5CF
+
+}
+
+.submithome-button:active {
+    --bs-btn-active-bg: #4B6587;
+    --bs-btn-active-color: #F0E5CF;
+}
