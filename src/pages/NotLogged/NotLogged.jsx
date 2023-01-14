@@ -1,5 +1,5 @@
 import "./NotLogged.css";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import imgNotLogged from "../../img/notlogged.gif";
 
 function NotLogged() {
@@ -10,20 +10,17 @@ function NotLogged() {
           <img
             src={imgNotLogged}
             alt="Not Logged"
-            style={{ maxWidth: "25%" }}
+            style={{ maxWidth: "65%" }}
           />
-          <h1>
+          <h4>
             Uh oh! You are not logged in to
             <br />
             your Foodieasy account.
-          </h1>
-          <p>
-            Please{" "}
-            <a className="href-p" href="/">
-              log in here
-            </a>
-            .
-          </p>
+          </h4>
+
+          <Button className="submithome-button" href="/">
+            Login Here
+          </Button>
           <div></div>
         </div>
       </Container>
