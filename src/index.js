@@ -12,10 +12,11 @@ import Favorites from "./pages/Favorites/Favorites";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import AddFood from "./pages/AddFood/AddFood";
 import AllUser from "./pages/AllUsers/AllUsers";
-import NotLogged from "./pages/NotLogged/NotLogged";
 import Details from "./pages/Details/Details";
 import FoodList from "./pages/FoodList/FoodList";
 import Profile from "./pages/Profile/Profile";
+import NotLogged from "./pages/NotLogged/NotLogged";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 /* Library */
 import React from "react";
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         <Footer />
       </>
     ),
-    errorElement: <p>Page Not Found</p>,
+    errorElement: <PageNotFound />,
     children: [
       {
         path: "/",
