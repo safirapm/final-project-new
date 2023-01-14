@@ -11,11 +11,11 @@ function Home() {
       <Container className="home-background">
         <div className="hero-header">
           <div className="text-header">
-            <h1 className="h1-header">
+            <h1>
               cooking is <span className="h1-food">easier</span> with{" "}
               <span className="h1-food">foodieasy</span>.
             </h1>
-            <p className="p-header">
+            <p>
               Explore recipes from all over the world and
               <br /> share your own to people across the globe.
             </p>

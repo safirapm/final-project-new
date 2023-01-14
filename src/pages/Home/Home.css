@@ -27,7 +27,7 @@
     text-align: center;
 }
 
-.h1-header {
+.text-header h1 {
     color: #444;
     font-weight: 600;
 }
@@ -38,8 +38,9 @@
     color: #4B6587;
 }
 
-.p-header {
+.text-header p {
     font-size: 20px;
+    line-height: 25px;
 }
 
 /* Section 1 */
