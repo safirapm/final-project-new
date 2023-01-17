@@ -47,25 +47,24 @@ function Favorites() {
           console.log(error);
         });
     } else {
-      if (window.confirm("Are you sure you want to unlike this food?"))
-        axios({
-          method: "post",
-          url: `${process.env.REACT_APP_BASEURL}api/v1/unlike`,
-          data: {
-            foodId: id,
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            apiKey: process.env.REACT_APP_APIKEY,
-          },
+      axios({
+        method: "post",
+        url: `${process.env.REACT_APP_BASEURL}api/v1/unlike`,
+        data: {
+          foodId: id,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          apiKey: process.env.REACT_APP_APIKEY,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          getLikeFoods();
         })
-          .then((response) => {
-            console.log(response);
-            getLikeFoods();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
