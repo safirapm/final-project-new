@@ -25,8 +25,9 @@ const AddFood = ({ onSuccess }) => {
         apiKey: process.env.REACT_APP_APIKEY,
       },
     })
-      .then((response) => {
-        alert(`${response.data.message}`);
+      .then((res) => {
+        console.log(res);
+        alert("Your food has been created.");
         window.location.href = "/food-list";
         resetForm({ values: "" });
         onSuccess();
