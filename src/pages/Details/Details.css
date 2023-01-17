@@ -52,6 +52,10 @@
     margin-bottom: 8px;
 }
 
+.detail-text {
+    width: 320px;
+}
+
 .detail-text h3 {
     font-family: 'General Sans', sans-serif;
     color: #4B6587;
@@ -80,8 +84,6 @@
     border-top: solid 1px #4B6587;
 
     width: 100%;
-
-
 }
 
 .detail-footer-2 {
