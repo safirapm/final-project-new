@@ -52,107 +52,111 @@ const AddFood = ({ onSuccess }) => {
 
   return (
     <>
-      <Container fluid className="addfood-page">
-        <Formik
-          initialValues={{
-            name: "",
-            imageUrl: savePicture,
-            description: "",
-            ingredients: [""],
-          }}
-          validationSchema={Yup.object({
-            name: Yup.string().required("Required"),
-            description: Yup.string().required("Required"),
-          })}
-          onSubmit={onSubmit}
-        >
-          <Container className="addfood-container">
-            <div className="text-center">
-              <h2>Add Food</h2>
-            </div>
+      {localStorage.getItem("role") === "admin" ? (
+        <Container fluid className="addfood-page">
+          <Formik
+            initialValues={{
+              name: "",
+              imageUrl: savePicture,
+              description: "",
+              ingredients: [""],
+            }}
+            validationSchema={Yup.object({
+              name: Yup.string().required("Required"),
+              description: Yup.string().required("Required"),
+            })}
+            onSubmit={onSubmit}
+          >
+            <Container className="addfood-container">
+              <div className="text-center">
+                <h2>Add Food</h2>
+              </div>
 
-            <div className="row justify-content-center">
-              <div className="col-md-12">
-                <Form>
-                  <MyTextInput
-                    label="Food Name"
-                    name="name"
-                    type="text"
-                    placeholder="Food name"
-                  />
+              <div className="row justify-content-center">
+                <div className="col-md-12">
+                  <Form>
+                    <MyTextInput
+                      label="Food Name"
+                      name="name"
+                      type="text"
+                      placeholder="Food name"
+                    />
 
-                  <MyTextInput
-                    label="Food Description"
-                    name="description"
-                    type="text"
-                    placeholder="Food Description"
-                  />
+                    <MyTextInput
+                      label="Food Description"
+                      name="description"
+                      type="text"
+                      placeholder="Food Description"
+                    />
 
-                  <div className="form-label">
-                    Upload Picture (JPG/PNG/JPEG)
-                  </div>
-                  <AttachImage
-                    name="imageUrl"
-                    onChange={(value) => setSavePicture(value)}
-                  />
+                    <div className="form-label">
+                      Upload Picture (JPG/PNG/JPEG)
+                    </div>
+                    <AttachImage
+                      name="imageUrl"
+                      onChange={(value) => setSavePicture(value)}
+                    />
 
-                  <div className="mb-3">
-                    <label>Food Ingredients</label>
-                    <FieldArray name="ingredients">
-                      {(fieldArrayProps) => {
-                        const { push, remove, form } = fieldArrayProps;
-                        const { values } = form;
-                        const { ingredients } = values;
-                        return (
-                          <div>
-                            {ingredients.map((ingredient, index) => (
-                              <div
-                                key={index}
-                                className="d-flex input-group mb-1"
-                              >
-                                <Field
-                                  name={`ingredients[${index}]`}
-                                  placeholder="Food Ingredients"
-                                  className="form-control"
-                                />
-                                {index > 0 && (
+                    <div className="mb-3">
+                      <label>Food Ingredients</label>
+                      <FieldArray name="ingredients">
+                        {(fieldArrayProps) => {
+                          const { push, remove, form } = fieldArrayProps;
+                          const { values } = form;
+                          const { ingredients } = values;
+                          return (
+                            <div>
+                              {ingredients.map((ingredient, index) => (
+                                <div
+                                  key={index}
+                                  className="d-flex input-group mb-1"
+                                >
+                                  <Field
+                                    name={`ingredients[${index}]`}
+                                    placeholder="Food Ingredients"
+                                    className="form-control"
+                                  />
+                                  {index > 0 && (
+                                    <button
+                                      type="button"
+                                      className="minus-button btn btn-outline-primary"
+                                      onClick={() => remove(index)}
+                                    >
+                                      -
+                                    </button>
+                                  )}
                                   <button
                                     type="button"
-                                    className="minus-button btn btn-outline-primary"
-                                    onClick={() => remove(index)}
+                                    className="plus-button btn btn-outline-primary"
+                                    onClick={() => push("")}
                                   >
-                                    -
+                                    +
                                   </button>
-                                )}
-                                <button
-                                  type="button"
-                                  className="plus-button btn btn-outline-primary"
-                                  onClick={() => push("")}
-                                >
-                                  +
-                                </button>
-                              </div>
-                            ))}
-                          </div>
-                        );
-                      }}
-                    </FieldArray>
-                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        }}
+                      </FieldArray>
+                    </div>
 
-                  <div className="text-center">
-                    <button
-                      type="submit"
-                      className="addfood-button btn btn-primary"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </Form>
+                    <div className="text-center">
+                      <button
+                        type="submit"
+                        className="addfood-button btn btn-primary"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </Form>
+                </div>
               </div>
-            </div>
-          </Container>
-        </Formik>
-      </Container>
+            </Container>
+          </Formik>
+        </Container>
+      ) : (
+        (window.location.href = "/not-admin")
+      )}
     </>
   );
 };

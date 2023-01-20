@@ -64,127 +64,134 @@ function AllUsers() {
 
   return (
     <>
-      <Container className="user-container">
-        <h2 className="text-center">The Foodieasy Community</h2>
-        <Container className="foodcard1-all pd-10">
-          {allUser.map((user) => {
-            return (
-              <Container key={user.id} className="foodcard1-all">
-                <div className="foodcard1-box d-flex flex-column">
-                  <div className="foodcard1-img">
-                    <img
-                      src={
-                        user.profilePictureUrl
-                          ? user.profilePictureUrl
-                          : avatarImage
-                      }
-                      alt={user.name}
-                      onError={onImageError}
-                    />
+      {localStorage.getItem("role") === "admin" ? (
+        <Container className="user-container">
+          <h2 className="text-center">The Foodieasy Community</h2>
+          <Container className="foodcard1-all pd-10">
+            {allUser.map((user) => {
+              return (
+                <Container key={user.id} className="foodcard1-all">
+                  <div className="foodcard1-box d-flex flex-column">
+                    <div className="foodcard1-img">
+                      <img
+                        src={
+                          user.profilePictureUrl
+                            ? user.profilePictureUrl
+                            : avatarImage
+                        }
+                        alt={user.name}
+                        onError={onImageError}
+                      />
+                    </div>
+                    <div className="allusers-box-text">
+                      <h4 className="text-capitalize">{user.name}</h4>
+                      <p>
+                        <i className="bi bi-envelope-at-fill"></i> {user.email}
+                      </p>
+                      <p className="text-capitalize">
+                        <i className="bi bi-file-person-fill"></i> {user.role}
+                      </p>
+                      <p>
+                        <i className="bi bi-phone-vibrate-fill"></i>{" "}
+                        {user.phoneNumber}
+                      </p>
+                    </div>
+                    <div className="card-footer allusers-footer">
+                      <Button
+                        className="allusers-button"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#staticBackdrop_${user.id}`}
+                      >
+                        Update Role
+                      </Button>
+                    </div>
                   </div>
-                  <div className="allusers-box-text">
-                    <h4 className="text-capitalize">{user.name}</h4>
-                    <p>
-                      <i className="bi bi-envelope-at-fill"></i> {user.email}
-                    </p>
-                    <p className="text-capitalize">
-                      <i className="bi bi-file-person-fill"></i> {user.role}
-                    </p>
-                    <p>
-                      <i className="bi bi-phone-vibrate-fill"></i>{" "}
-                      {user.phoneNumber}
-                    </p>
-                  </div>
-                  <div className="card-footer allusers-footer">
-                    <Button
-                      className="allusers-button"
-                      data-bs-toggle="modal"
-                      data-bs-target={`#staticBackdrop_${user.id}`}
-                    >
-                      Update Role
-                    </Button>
-                  </div>
-                </div>
 
-                <div
-                  className="modal fade"
-                  id={`staticBackdrop_${user.id}`}
-                  tabIndex="-1"
-                  aria-labelledby="modal-title"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog modal-md">
-                    <div className="modal-content">
-                      <div className="modal-body">
-                        <Formik
-                          initialValues={{
-                            role: user.role,
-                            id: user.id,
-                          }}
-                          enableReinitialize={true}
-                          validationSchema={Yup.object({
-                            role: Yup.string().oneOf(
-                              ["admin", "user"],
-                              "Invalid Job Type"
-                            ),
-                          })}
-                          onSubmit={onSubmit}
-                        >
-                          <Container className="alluser-modal">
-                            <div
-                              className="text-center"
-                              style={{
-                                fontFamily: "'General Sans', sans-serif",
-                                paddingBottom: "5px",
-                              }}
-                            >
-                              <h3>Profile</h3>
-                            </div>
-                            <div className="alluser-box">
-                              <img
-                                src={
-                                  user.profilePictureUrl
-                                    ? user.profilePictureUrl
-                                    : avatarImage
-                                }
-                                alt={user.name}
-                                onError={onImageError}
-                              />
-                              <h5 className="card-title text-center mt-2">
-                                {user.name}
-                              </h5>
-                              <Form>
-                                <MySelect label="Role" name="role">
-                                  <option value="">Select a Role</option>
-                                  <option value="admin">Admin</option>
-                                  <option value="user">User</option>
-                                </MySelect>
+                  <div
+                    className="modal fade"
+                    id={`staticBackdrop_${user.id}`}
+                    tabIndex="-1"
+                    aria-labelledby="modal-title"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-md">
+                      <div className="modal-content">
+                        <div className="modal-body">
+                          <Formik
+                            initialValues={{
+                              role: user.role,
+                              id: user.id,
+                            }}
+                            enableReinitialize={true}
+                            validationSchema={Yup.object({
+                              role: Yup.string().oneOf(
+                                ["admin", "user"],
+                                "Invalid Job Type"
+                              ),
+                            })}
+                            onSubmit={onSubmit}
+                          >
+                            <Container className="alluser-modal">
+                              <div
+                                className="text-center"
+                                style={{
+                                  fontFamily: "'General Sans', sans-serif",
+                                  paddingBottom: "5px",
+                                }}
+                              >
+                                <h3>Profile</h3>
+                              </div>
+                              <div className="alluser-box">
+                                <img
+                                  src={
+                                    user.profilePictureUrl
+                                      ? user.profilePictureUrl
+                                      : avatarImage
+                                  }
+                                  alt={user.name}
+                                  onError={onImageError}
+                                />
+                                <h5 className="card-title text-center mt-2">
+                                  {user.name}
+                                </h5>
+                                <Form>
+                                  <MySelect label="Role" name="role">
+                                    <option value="">Select a Role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                  </MySelect>
 
-                                <div className="text-end">
-                                  <Button className="save-button" type="submit">
-                                    Save Changes
-                                  </Button>
-                                  <Button
-                                    className="cancel-button"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                  >
-                                    Cancel
-                                  </Button>
-                                </div>
-                              </Form>
-                            </div>
-                          </Container>
-                        </Formik>
+                                  <div className="text-end">
+                                    <Button
+                                      className="save-button"
+                                      type="submit"
+                                    >
+                                      Save Changes
+                                    </Button>
+                                    <Button
+                                      className="cancel-button"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                    >
+                                      Cancel
+                                    </Button>
+                                  </div>
+                                </Form>
+                              </div>
+                            </Container>
+                          </Formik>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Container>
-            );
-          })}
+                </Container>
+              );
+            })}
+          </Container>
         </Container>
-      </Container>
+      ) : (
+        (window.location.href = "/not-admin")
+      )}
     </>
   );
 }
