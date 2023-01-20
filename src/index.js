@@ -17,6 +17,7 @@ import FoodList from "./pages/FoodList/FoodList";
 import Profile from "./pages/Profile/Profile";
 import NotLogged from "./pages/NotLogged/NotLogged";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import NotAdmin from "./pages/NotAdmin/NotAdmin";
 
 /* Library */
 import React from "react";
@@ -81,16 +82,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <Login />,
   },
+
+  {
+    path: "/not-admin",
+    element: <NotAdmin />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={router} />);
-
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
 
 reportWebVitals();
