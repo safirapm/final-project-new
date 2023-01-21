@@ -154,7 +154,7 @@ function Profile() {
                     <img
                       src={
                         profile && profile.profilePictureUrl
-                          ? profile && profile.profilePictureUrl
+                          ? profile.profilePictureUrl
                           : avatarImage
                       }
                       alt={profile && profile.name}
